@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		C83B7112278E02F300AB3058 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B7111278E02F300AB3058 /* main.swift */; };
+		C83B7119278E044D00AB3058 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B7118278E044D00AB3058 /* Player.swift */; };
+		C83B711B278E04B500AB3058 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B711A278E04B500AB3058 /* Weapon.swift */; };
+		C83B711D278E050D00AB3058 /* Axe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B711C278E050D00AB3058 /* Axe.swift */; };
+		C83B711F278E058A00AB3058 /* BowArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B711E278E058A00AB3058 /* BowArrow.swift */; };
+		C83B7121278E05A200AB3058 /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B7120278E05A200AB3058 /* Sword.swift */; };
+		C83B7123278E074700AB3058 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B7122278E074700AB3058 /* Character.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,12 @@
 /* Begin PBXFileReference section */
 		C83B710E278E02F300AB3058 /* Ragnarok new */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Ragnarok new"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83B7111278E02F300AB3058 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C83B7118278E044D00AB3058 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C83B711A278E04B500AB3058 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		C83B711C278E050D00AB3058 /* Axe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axe.swift; sourceTree = "<group>"; };
+		C83B711E278E058A00AB3058 /* BowArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowArrow.swift; sourceTree = "<group>"; };
+		C83B7120278E05A200AB3058 /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sword.swift; sourceTree = "<group>"; };
+		C83B7122278E074700AB3058 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +53,11 @@
 		C83B7105278E02F300AB3058 = {
 			isa = PBXGroup;
 			children = (
-				C83B7110278E02F300AB3058 /* Ragnarok new */,
+				C83B7111278E02F300AB3058 /* main.swift */,
+				C83B7118278E044D00AB3058 /* Player.swift */,
+				C83B7122278E074700AB3058 /* Character.swift */,
+				C83B711A278E04B500AB3058 /* Weapon.swift */,
+				C83B7110278E02F300AB3058 /* Weapon */,
 				C83B710F278E02F300AB3058 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +70,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C83B7110278E02F300AB3058 /* Ragnarok new */ = {
+		C83B7110278E02F300AB3058 /* Weapon */ = {
 			isa = PBXGroup;
 			children = (
-				C83B7111278E02F300AB3058 /* main.swift */,
+				C83B711C278E050D00AB3058 /* Axe.swift */,
+				C83B711E278E058A00AB3058 /* BowArrow.swift */,
+				C83B7120278E05A200AB3058 /* Sword.swift */,
 			);
-			path = "Ragnarok new";
+			path = Weapon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,7 +138,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C83B711F278E058A00AB3058 /* BowArrow.swift in Sources */,
+				C83B7119278E044D00AB3058 /* Player.swift in Sources */,
+				C83B7123278E074700AB3058 /* Character.swift in Sources */,
 				C83B7112278E02F300AB3058 /* main.swift in Sources */,
+				C83B711D278E050D00AB3058 /* Axe.swift in Sources */,
+				C83B711B278E04B500AB3058 /* Weapon.swift in Sources */,
+				C83B7121278E05A200AB3058 /* Sword.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
