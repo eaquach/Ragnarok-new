@@ -15,7 +15,7 @@ class Character {
         self.name = name
     }
     
-    func characterNameIsTaken(name:Character) -> Bool {
+    static func characterNameIsTaken(name:Character) -> Bool {
         return false
         
     }
@@ -29,41 +29,6 @@ class Character {
     func underAttack () {
         print ("attack received by \(name) +\(weapon.damagePoints)")
     }
-//    
-//    func pickAWeapon() -> Weapon {
-//        print("""
-//              Select a weapon from the following list:
-//   
-//              """)
-//        
-//        for (index, weapon) in Weapon.weapons.enumerated() {
-//            print("Item \(index): \(weapon.name)")
-//        }
-//        
-//        if let indexValue = readLine(),
-//           let choice = Int(indexValue),
-//           choice >= 0,
-//           choice < Weapon.weapons.count {
-//            let weapon =  Weapon.weapons[choice]
-//            
-//            print  ("Your weapon is \(weapon.name)")
-//            return weapon
-//        } else {
-//            print ("wrong choice")
-//            return pickAWeapon()
-//        }
-        
-//        func createCharacter() -> Character {
-//            print ("name character")
-//            if let nameValue = readLine() {
-//                let weapon = pickAWeapon()
-//                return Character(weapon: weapon, name: nameValue)
-//                
-//            } else {
-//                print ("wrong choice")
-//                return createCharacter()
-//            }
-//        }
-        
-//    }
+
+
 }
