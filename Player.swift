@@ -14,9 +14,12 @@ class Player: NSObject {
     func isNameAlreadyTaken(name:String) -> Bool {
         return false
     }
+    
+    
     func setName(name:String) -> Bool {
         return false
     }
+    
     
     static func createPlayer() -> Player {
         print("Choose a name for your player")
@@ -28,6 +31,7 @@ class Player: NSObject {
         }
         return Player(playerName: "unknown")
     }
+    
     
     func createCharacters() {
         while characters.count < maxCharacterTeamPlayer {
@@ -88,13 +92,8 @@ class Player: NSObject {
     //        """
     //   )
     
-   let playerOneTeam = [Character]() //comment délimiter les personnes 0,1,2
-
     
-    let  playerTwoTeam = [Character]()
-   
-    
-    func pickAFighter(character: inout[Character]) {
+    func pickACharacter() -> Character {
         var fighter : Character
         var playerChoice = ""
         repeat {
@@ -105,23 +104,22 @@ class Player: NSObject {
 
         switch playerChoice {
         case "1":
-            fighter = self.playerOneTeam[0]
-            characters.append(fighter)
-
+            fighter = self.characters[0]
+            
         case "2":
-            fighter = self.playerOneTeam[1]
-            characters.append(fighter)
+            fighter = self.characters[1]
+            
 
         case "3":
-            fighter = self.playerOneTeam[2]
-            characters.append(fighter)
-
+            fighter = self.characters[2]
+            
         default:
-            print("Press 1, 2 or 3")
-
+            fighter = self.characters[0]
         }
-
+        return fighter
+        
     }
+    
 //    func playerIsAlive() -> Bool {
 //        while ==    < 0
 //                print("Continue the fight")

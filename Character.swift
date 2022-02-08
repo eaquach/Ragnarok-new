@@ -3,7 +3,8 @@ import Foundation
 
 class Character {
     static let characters = [Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: ""), Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: "")]
-   
+
+    
     static var names :String = Character.names
     
     var name:String
@@ -34,7 +35,7 @@ class Character {
     }
 
   func characterIsAlive() -> Bool {
-        while lifePoints > 0 {
+      while lifePoints > 0 { // faire un if  return un bool 
             print ("You are underattack, fight back")
         }
         return characterIsAlive()
@@ -49,8 +50,10 @@ class Character {
 
     func teamIsDead() -> Bool {
         while characterIsAlive (),lifePoints < 0 {
-            print("You don't have any lifepoints left, you have lost the fight")
+            print("All of your characters have no longer lifepoints left, you have lost the fight")
         }
         return teamIsDead()
     }
 }
+
+

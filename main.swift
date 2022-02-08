@@ -6,7 +6,6 @@ class Game {
     var playerTwo : Player
     var currentPlayer: Player
     
-    
     init() {
         self.playerOne = Player.createPlayer()
         self.playerTwo = Player.createPlayer()
@@ -25,20 +24,19 @@ class Game {
               We can now start our first fight.
               Let's go!
               """)
-       
-//        playerOne.createCharacter()
-//        playerTwo.createCharacter()
 
     }
     
     func startFight()  {
-        // à compléter: trouver la logique de combat avec une boucle, ne pas oublier d'intégrer le coffre aléatoire (random)
-        // fonction TeamIsAlive à a jouter
+//        playerOne.characters.attack()
+//        playerTwo.characters.attack()
     }
 }
 
 let game = Game()
 game.welcomeGameMessage()
+
+
 
 
 
