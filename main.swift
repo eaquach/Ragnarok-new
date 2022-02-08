@@ -33,12 +33,12 @@ class Game {
     
     func startFight()  {
         // à compléter: trouver la logique de combat avec une boucle, ne pas oublier d'intégrer le coffre aléatoire (random)
+        // fonction TeamIsAlive à a jouter
     }
 }
 
 let game = Game()
 game.welcomeGameMessage()
-
 
 
 

@@ -56,8 +56,8 @@
 				C83B7111278E02F300AB3058 /* main.swift */,
 				C83B7118278E044D00AB3058 /* Player.swift */,
 				C83B7122278E074700AB3058 /* Character.swift */,
-				C83B711A278E04B500AB3058 /* Weapon.swift */,
 				C83B7110278E02F300AB3058 /* Weapon */,
+				C83B711A278E04B500AB3058 /* Weapon.swift */,
 				C83B710F278E02F300AB3058 /* Products */,
 			);
 			sourceTree = "<group>";
