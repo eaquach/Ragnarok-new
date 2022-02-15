@@ -11,127 +11,146 @@ class Player: NSObject {
     }
     
     
-    func isNameAlreadyTaken(name:String) -> Bool {
-        for character in characters {
-            if character.name == character.name {
-              print("This name is already taken, choose another name for your character")
-            } else {
-                print("Choose a name for your second character")
+        func isNameAlreadyTaken(name:String) -> Bool {
+            characters.forEach { (Character) in
+                if name != name {
+                createCharacters()
+                } else if name == name {
+                    print("This name is already taken, choose another name for your character")
+                    createCharacters()
+    
+                }
             }
                 return false
-    }
-    }
-        
+            }
+    
+    
+//    func isNameAlreadyTaken(name:String) -> Bool {
+//        for _ in Character.characters.enumerated() {
+//        if let Character = readLine() {
+//            let nameChoice = String() , nameChoice != Character.characters.enumerated {
+//                let character = Character.characters[nameChoice]
+//            } else {
+//                print("This name is already taken, choose another name for your character")
+//                createCharacters()
+//            }
+//        }
+//        return false
+//    }
+    
+    
+    
     func setName(name:String) -> Bool {
-            return false
+        return false
+    }
+    
+    
+    
+    static func createPlayer() -> Player {
+        print("Choose a name for your player")
+        
+        while let playerName = readLine() {
+            let player = Player(playerName: playerName)
+            player.createCharacters()
+            return player
+        }
+        return Player(playerName: "unknown")
+    }
+    
+    
+    
+    func createCharacters() {
+        while characters.count < maxCharacterTeamPlayer {
+            let character = createCharacter()
+            characters.append(character)
         }
         
-        
-        static func createPlayer() -> Player {
-            print("Choose a name for your player")
-            
-            while let playerName = readLine() {
-                let player = Player(playerName: playerName)
-                player.createCharacters()
-                return player
-            }
-            return Player(playerName: "unknown")
+    }
+    
+    // while the 3 characters are not created, repeat the code
+    
+    
+    func createCharacter() -> Character {
+        print ("Enter a name for your character")
+        if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){
+            let weapon = pickAWeapon()
+            return Character(weapon: weapon,name: nameValue)
+        } else {
+            print ("wrong choice")
         }
-        
-        
-        func createCharacters() {
-            while characters.count < maxCharacterTeamPlayer {
-                let character = createCharacter()
-                characters.append(character)
-            }
-            
-        }
-        
-        // while the 3 characters are not created, repeat the code
-        
-        
-        func createCharacter() -> Character {
-            print ("Enter a name for your character")
-            if let nameValue = readLine(),!isNameAlreadyTaken(name: nameValue){  //je n'arrive pas à utiliser la fonction isnamealreadytaken
-                let weapon = pickAWeapon()
-                return Character(weapon: weapon,name: nameValue)
-            } else {
-                print ("wrong choice")
-            }
-            return createCharacter()
-        }
-        
-        
-        
-        
-        func pickAWeapon() -> Weapon {
-            print("""
+        return createCharacter()
+    }
+    
+    
+    
+    
+    func pickAWeapon() -> Weapon {
+        print("""
         Select a weapon from the following list, by pressing the associated number:
         """)
-            
-            for (index, weapon) in Weapon.weapons.enumerated() {
-                print("Item \(index): \(weapon.name)")
-            }
-            
-            if let indexValue = readLine(),
-               let choice = Int(indexValue),
-               choice >= 0,
-               choice < Weapon.weapons.count {
-                let weapon =  Weapon.weapons[choice]
-                
-                print  ("Your weapon is \(weapon.name)")
-                return weapon
-            } else {
-                print ("wrong choice")
-                return pickAWeapon()
-            }
-            
+        
+        for (index, weapon) in Weapon.weapons.enumerated() {
+            print("Item \(index): \(weapon.name)")
         }
         
-        
-        //   print (
-        //        """
-        //        Choose a character from your team to start the first battle \
-        //        \press 1 for your first character to be the fighter \
-        //        press 2 for your second character to be the fighter \
-        //        press 3 for your third character to be the fighter \
-        //        """
-        //   )
-        
-        
-        func pickACharacter() -> Character {
-            var fighter : Character
-            var playerChoice = ""
-            repeat {
-                if let entree = readLine() {
-                    playerChoice = entree
-                }
-            } while playerChoice != "1" && playerChoice != "2" && playerChoice != "3"
+        if let indexValue = readLine(),
+           let choice = Int(indexValue),
+           choice >= 0,
+           choice < Weapon.weapons.count {
+            let weapon =  Weapon.weapons[choice]
             
-            switch playerChoice {
-            case "1":
-                fighter = self.characters[0]
-                
-            case "2":
-                fighter = self.characters[1]
-                
-                
-            case "3":
-                fighter = self.characters[2]
-                
-            default:
-                fighter = self.characters[0]
-            }
-            return fighter
-            
+            print  ("Your weapon is \(weapon.name)")
+            return weapon
+        } else {
+            print ("wrong choice")
+            return pickAWeapon()
         }
         
-        //    func playerIsAlive() -> Bool {
-        //        while ==    < 0
-        //                print("Continue the fight")
-        //    }
-        //    return playerIsAlive()
     }
     
     
+    //   print (
+    //        """
+    //        Choose a character from your team to start the first battle \
+    //        \press 1 for your first character to be the fighter \
+    //        press 2 for your second character to be the fighter \
+    //        press 3 for your third character to be the fighter \
+    //        """
+    //   )
     
+    
+    func pickACharacter() -> Character {
+        var fighter : Character
+        var playerChoice = ""
+        repeat {
+            if let entree = readLine() {
+                playerChoice = entree
+            }
+        } while playerChoice != "1" && playerChoice != "2" && playerChoice != "3"
+        
+        switch playerChoice {
+        case "1":
+            fighter = self.characters[0]
+            
+        case "2":
+            fighter = self.characters[1]
+            
+        case "3":
+            fighter = self.characters[2]
+            
+        default:
+            fighter = self.characters[0]
+        }
+        return fighter
+        
+    }
+    
+    //    func playerIsAlive() -> Bool {
+    //        while ==    < 0
+    //                print("Continue the fight")
+    //    }
+    //    return playerIsAlive()
+}
+
+
+

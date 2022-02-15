@@ -18,11 +18,7 @@ class Character {
     }
    
     
-
-   static func characterNameIsTaken(name:Character) -> Bool {
-        return false
-        
-    }
+    
     func attack(){
         let points = weapon.damagePoints
         let name = weapon
@@ -30,16 +26,22 @@ class Character {
         print("attack from \(name)", String (points) , "damage points with\(name)")
     }
     
+    
+
     func underAttack () {
         print ("attack received by \(name) +\(weapon.damagePoints)")
     }
 
+    
+    
   func characterIsAlive() -> Bool {
-      while lifePoints > 0 { // faire un if  return un bool 
+     if lifePoints > 0 { // faire un if  return un bool
             print ("You are underattack, fight back")
         }
-        return characterIsAlive()
+        return true
     }
+    
+    
     
     func teamIsAlive() -> Bool {
         while characterIsAlive(),lifePoints > 0 {
@@ -48,6 +50,8 @@ class Character {
         return teamIsAlive()
     }
 
+    
+    
     func teamIsDead() -> Bool {
         while characterIsAlive (),lifePoints < 0 {
             print("All of your characters have no longer lifepoints left, you have lost the fight")
