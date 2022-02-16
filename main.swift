@@ -5,12 +5,16 @@ class Game {
     var playerOne : Player
     var playerTwo : Player
     var currentPlayer: Player
+    var scoreOne: Int
+    var scoreTwo: Int
     
     init() {
         self.playerOne = Player.createPlayer()
         self.playerTwo = Player.createPlayer()
-            self.currentPlayer = playerOne
-        }
+        self.currentPlayer = playerOne
+        scoreOne = 0
+        scoreTwo = 0
+    }
     
     func setCurrentPlayer() {
         currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
@@ -24,12 +28,20 @@ class Game {
               We can now start our first fight.
               Let's go!
               """)
-
+        
     }
     
-    func startFight()  {
-//        playerOne.characters.attack()
-//        playerTwo.characters.attack()
+    /* le joueur 1 choisit un personnage de son équipe et attaque le joueur de la partie adverse
+     le joueur de la partie adversaire riposte avec son joueur,
+     si l'un des personnages est mort dans l'équipe, on passe à un autre personnage
+     on vérifie s'il y a des membres de notre équipe vivante
+     */
+    
+    func startFight() {
+        playerOne.pickACharacter().attack()
+        playerTwo.pickACharacter().underAttack()
+        playerOne.pickACharacter().underAttack()
+        playerTwo.pickACharacter().attack()
     }
 }
 

@@ -5,7 +5,7 @@ class Character {
     static let characters = [Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: ""), Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: "")]
 
     
-    static var names :String = Character.names
+    static var names = [String]()
     
     var name:String
     var lifePoints = 100
@@ -17,7 +17,6 @@ class Character {
         self.name = name
     }
    
-    
     
     func attack(){
         let points = weapon.damagePoints
@@ -47,7 +46,7 @@ class Character {
         while characterIsAlive(),lifePoints > 0 {
             print("You can still win the fight, fight back")
         }
-        return teamIsAlive()
+        return true
     }
 
     
@@ -56,7 +55,7 @@ class Character {
         while characterIsAlive (),lifePoints < 0 {
             print("All of your characters have no longer lifepoints left, you have lost the fight")
         }
-        return teamIsDead()
+        return true
     }
 }
 

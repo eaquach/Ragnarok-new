@@ -11,32 +11,15 @@ class Player: NSObject {
     }
     
     
-        func isNameAlreadyTaken(name:String) -> Bool {
-            characters.forEach { (Character) in
-                if name != name {
-                createCharacters()
-                } else if name == name {
-                    print("This name is already taken, choose another name for your character")
-                    createCharacters()
     
-                }
-            }
-                return false
-            }
-    
-    
-//    func isNameAlreadyTaken(name:String) -> Bool {
-//        for _ in Character.characters.enumerated() {
-//        if let Character = readLine() {
-//            let nameChoice = String() , nameChoice != Character.characters.enumerated {
-//                let character = Character.characters[nameChoice]
-//            } else {
-//                print("This name is already taken, choose another name for your character")
-//                createCharacters()
-//            }
-//        }
-//        return false
-//    }
+    func isNameAlreadyTaken(name:String) -> Bool {
+        let contains = Character.names.contains(name)
+        if !contains {
+            Character.names.append(name)
+        }
+        
+        return contains
+    }
     
     
     
@@ -76,7 +59,7 @@ class Player: NSObject {
             let weapon = pickAWeapon()
             return Character(weapon: weapon,name: nameValue)
         } else {
-            print ("wrong choice")
+            print ("This name is already taken, choose another name")
         }
         return createCharacter()
     }
