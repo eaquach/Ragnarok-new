@@ -57,7 +57,7 @@ class Player: NSObject {
         print ("Enter a name for your character")
         if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){
             let weapon = pickAWeapon()
-            return Character(weapon: weapon,name: nameValue)
+            return Character(weapon: weapon,name: nameValue, damage:0)
         } else {
             print ("This name is already taken, choose another name")
         }
@@ -92,6 +92,41 @@ class Player: NSObject {
     }
     
     
+    func pickACharacter() -> Character {
+        var fighter : Character
+        var playerChoice = ""
+        repeat {
+            if let choice = readLine() {
+                playerChoice = choice
+            }
+            
+        } while playerChoice != "1" && playerChoice != "2" && playerChoice != "3"
+        
+        switch playerChoice {
+        case "1":
+            print("You choose\(Character.names) as the fighter")
+            fighter = self.characters[0]
+            
+        case "2":
+            print("You choose\(Character.names) as the fighter")
+            fighter = self.characters[1]
+            
+        case "3":
+            print("You choose\(Character.names) as the fighter")
+            fighter = self.characters[2]
+            
+        default:
+            fighter = self.characters[0]
+        }
+        return fighter
+    }
+    
+    
+    
+    
+    
+    
+    
     //   print (
     //        """
     //        Choose a character from your team to start the first battle \
@@ -102,31 +137,6 @@ class Player: NSObject {
     //   )
     
     
-    func pickACharacter() -> Character {
-        var fighter : Character
-        var playerChoice = ""
-        repeat {
-            if let entree = readLine() {
-                playerChoice = entree
-            }
-        } while playerChoice != "1" && playerChoice != "2" && playerChoice != "3"
-        
-        switch playerChoice {
-        case "1":
-            fighter = self.characters[0]
-            
-        case "2":
-            fighter = self.characters[1]
-            
-        case "3":
-            fighter = self.characters[2]
-            
-        default:
-            fighter = self.characters[0]
-        }
-        return fighter
-        
-    }
     
     //    func playerIsAlive() -> Bool {
     //        while ==    < 0

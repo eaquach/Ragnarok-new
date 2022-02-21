@@ -7,7 +7,6 @@ class Weapon {
     var name: String 
     static let weapons = [Axe(),BowArrow(),Sword()]
     
-
     var damagePoints : Int
     
     init (name: String,damagePoints pts: Int) {

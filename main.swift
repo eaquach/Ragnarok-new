@@ -24,7 +24,7 @@ class Game {
     func welcomeGameMessage() {
         print("""
               Hello warriors, welcome to the combat ring!
-              Congratulations, you have your entire team!
+              Congratulations, you have your entire team !
               We can now start our first fight.
               Let's go!
               """)
@@ -38,10 +38,17 @@ class Game {
      */
     
     func startFight() {
-        playerOne.pickACharacter().attack()
-        playerTwo.pickACharacter().underAttack()
-        playerOne.pickACharacter().underAttack()
-        playerTwo.pickACharacter().attack()
+        while playerOne.characters.count != 0 || playerTwo.characters.count != 0 {
+            print("\(currentPlayer) choose a character from your team to start the fight")
+        
+            let fighter = playerOne.pickACharacter()
+            let opponentFighter = playerTwo.pickACharacter()
+            
+            
+            
+            
+    
+        }
     }
 }
 
