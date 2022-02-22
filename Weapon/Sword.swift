@@ -8,6 +8,9 @@ class Sword : Weapon {
     
     var cure = 10
     func heal(){
+//        if Character.characterIsAlive(Character) == true {
+//            
+//        }
         print("heal teammate from attack of fighter + \(cure) points")
     }
     

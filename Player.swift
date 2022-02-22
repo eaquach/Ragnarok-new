@@ -57,7 +57,7 @@ class Player: NSObject {
         print ("Enter a name for your character")
         if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){
             let weapon = pickAWeapon()
-            return Character(weapon: weapon,name: nameValue, damage:0)
+            return Character(weapon: weapon,name: nameValue)
         } else {
             print ("This name is already taken, choose another name")
         }
@@ -92,17 +92,17 @@ class Player: NSObject {
     }
     
     
-    func pickACharacter() -> Character {
+    func pickAFighter() -> Character {
         var fighter : Character
-        var playerChoice = ""
+        var characterChoice = ""
         repeat {
             if let choice = readLine() {
-                playerChoice = choice
+                characterChoice = choice
             }
             
-        } while playerChoice != "1" && playerChoice != "2" && playerChoice != "3"
+        } while characterChoice != "1" && characterChoice != "2" && characterChoice != "3"
         
-        switch playerChoice {
+        switch characterChoice {
         case "1":
             print("You choose\(Character.names) as the fighter")
             fighter = self.characters[0]
@@ -123,6 +123,14 @@ class Player: NSObject {
     
     
     
+   static func playerIsAlive() {
+        {
+                print("You can still win the fight, fight back")
+            } else {
+             print("Your character is dead, choose another character to fight")
+            }
+        }
+    }
     
     
     

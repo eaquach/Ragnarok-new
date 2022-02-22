@@ -38,22 +38,45 @@ class Game {
      */
     
     func startFight() {
-        while playerOne.characters.count != 0 || playerTwo.characters.count != 0 {
-            print("\(currentPlayer) choose a character from your team to start the fight")
-        
-            let fighter = playerOne.pickACharacter()
-            let opponentFighter = playerTwo.pickACharacter()
+        while playerIsAlive(){
             
+            
+//            while (playerIsAlive)
+//            {
+//            // this code will keep running
+//              if (playerIsAlive == false)
+//              {
+//                // eventually if this stopping condition is true,
+//                // it will break out of the while loop
+//                break;
+//               }
+//             }
+//
+//            // rest of the program will continue
+//            <#code#>
+        }
+        
+
+
+//        while playerOne.characters.count != 0 || playerTwo.characters.count != 0 {
+//            print("\(currentPlayer) choose a character from your team to start the fight")
+//
+//            let fighter = playerOne.pickAFighter()
+//
+//            let opponentFighter = playerTwo.pickAFighter()
+//            opponentFighter.attack(opponent: Character)
             
             
             
     
         }
     }
-}
+
 
 let game = Game()
 game.welcomeGameMessage()
+
+
 
 
 
