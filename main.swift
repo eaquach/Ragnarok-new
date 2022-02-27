@@ -37,9 +37,9 @@ class Game {
      on vérifie s'il y a des membres de notre équipe vivante
      */
     
-    func startFight() {
-        while playerIsAlive(){
-            
+//    func startFight() {
+//        while playerIsAlive(){
+//            
             
 //            while (playerIsAlive)
 //            {

@@ -123,8 +123,8 @@ class Player: NSObject {
     
     
     
-   static func playerIsAlive() {
-        {
+    func playerIsAlive() -> Bool {
+        if Character.characterIsAlive(Character)
                 print("You can still win the fight, fight back")
             } else {
              print("Your character is dead, choose another character to fight")
@@ -133,8 +133,9 @@ class Player: NSObject {
     }
     
     
-    
-    
+//La boucle de tour par tour doit tenir compte d'une "inversion" entre les player: à chaque tour, le player opponent devient le currentPlayer et vice versa
+//Bien faire attention à la syntaxe et aux nomenclatures: un type commence par une majuscule, une variable ou constante par une minuscule. Bien indenter son code pour une lecture plus aisée.
+//
     //   print (
     //        """
     //        Choose a character from your team to start the first battle \
@@ -151,7 +152,7 @@ class Player: NSObject {
     //                print("Continue the fight")
     //    }
     //    return playerIsAlive()
-}
+   }
 
 
 

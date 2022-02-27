@@ -4,7 +4,7 @@ import Foundation
 // Character class, parent class of all the characters
 
 class Character {
-//    static let characters = [Character(weapon: axe, name: "", damage: 0), Character(weapon: bowArrow, name: "", damage: 0), Character(weapon: sword, name: "", damage: 0), Character(weapon: axe, name: "", damage: 0), Character(weapon: bowArrow, name: "", damage: 0), Character(weapon: sword, name: "",damage: 0),]
+    //    static let characters = [Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: ""), Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: "")]
     
     
     static var names = [String]()
@@ -20,28 +20,31 @@ class Character {
     }
     
     
-  
+    
     
     
     func attack(opponent : Character) {
-
+        
         //        print("attack from \(name)", String (points) , "damage points with\(name)")
         //
         opponent.lifePoints -= (weapon.damagePoints)
-            print("\(opponent.name) looses \(weapon.damagePoints) pts")
+        print("\(opponent.name) looses \(weapon.damagePoints) pts")
         
-        }
+    }
     
     
     
-    func cure(){
-        if 
-
+    //    func cure(){
+    //        if
+    //
+    //
     
-    
-    func characterIsAlive() -> Bool {
-        if lifePoints > 0 { // faire un if  return un bool
+    func characterIsAlive(lifePoints:Int) -> Bool {
+        let ptsLife = lifePoints.self
+        if ptsLife <= 0 {
             print ("You are underattack, fight back")
+        } else {
+            print("Your \(self.name) is dead, choose another to fight")
         }
         return true
     }
@@ -49,14 +52,12 @@ class Character {
     
     
     
-    
-    
-    func teamIsDead() -> Bool {
-        while characterIsAlive (),lifePoints < 0 {
-            print("All of your characters have no longer lifepoints left, you have lost the fight")
-        }
-        return true
-    }
+//    func teamIsDead() -> Bool {
+//        while characterIsAlive {
+//            print("All of your characters have no longer lifepoints left, you have lost the fight")
+//        }
+//        return true
+//    }
 }
 
 
