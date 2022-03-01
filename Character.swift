@@ -10,6 +10,7 @@ class Character {
     static var names = [String]()
     
     //    settings of all characters
+    var character : Character
     var name:String
     var lifePoints = 100
     var weapon : Weapon
@@ -24,14 +25,17 @@ class Character {
     
     
     func attack(opponent : Character) {
-        
-        //        print("attack from \(name)", String (points) , "damage points with\(name)")
-        //
+        print("attack from \(name)","damage points with\(name)")
         opponent.lifePoints -= (weapon.damagePoints)
         print("\(opponent.name) looses \(weapon.damagePoints) pts")
         
     }
     
+    
+//    func cure(target : Character){
+//        var curePoints = 10
+//        Character.cure
+//       
     
     
     //    func cure(){
@@ -39,25 +43,17 @@ class Character {
     //
     //
     
-    func characterIsAlive(lifePoints:Int) -> Bool {
-        let ptsLife = lifePoints.self
-        if ptsLife <= 0 {
+    static func characterIsAlive(Character: Int) -> Bool {
+        let ptsLife = Character.self
+        if ptsLife <= 10 {
             print ("You are underattack, fight back")
         } else {
-            print("Your \(self.name) is dead, choose another to fight")
+            print("Your \(Character) is dead, choose another to fight")
         }
-        return true
+        return Character()
     }
     
     
-    
-    
-//    func teamIsDead() -> Bool {
-//        while characterIsAlive {
-//            print("All of your characters have no longer lifepoints left, you have lost the fight")
-//        }
-//        return true
-//    }
 }
 
 

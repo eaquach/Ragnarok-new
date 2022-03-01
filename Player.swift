@@ -124,7 +124,13 @@ class Player: NSObject {
     
     
     func playerIsAlive() -> Bool {
-        if Character.characterIsAlive(Character)
+        
+        while playerIsAlive(playerOne) {
+            character.attack(opponent: Character)
+        }
+        
+       
+}
                 print("You can still win the fight, fight back")
             } else {
              print("Your character is dead, choose another character to fight")
@@ -152,7 +158,7 @@ class Player: NSObject {
     //                print("Continue the fight")
     //    }
     //    return playerIsAlive()
-   }
+   
 
 
 

@@ -7,7 +7,9 @@ class Sword : Weapon {
     }
     
     var cure = 10
-    func heal(){
+    
+    func heal(target: Character){
+//    if let characterWeapon = 
 //        if Character.characterIsAlive(Character) == true {
 //            
 //        }
