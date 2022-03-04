@@ -4,13 +4,11 @@ import Foundation
 // Character class, parent class of all the characters
 
 class Character {
-    //    static let characters = [Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: ""), Character(weapon: axe, name: ""), Character(weapon: bowArrow, name: ""), Character(weapon: sword, name: "")]
-    
     
     static var names = [String]()
     
     //    settings of all characters
-    var character : Character
+//    var character : Character
     var name:String
     var lifePoints = 100
     var weapon : Weapon
@@ -22,8 +20,6 @@ class Character {
     
     
     
-    
-    
     func attack(opponent : Character) {
         print("attack from \(name)","damage points with\(name)")
         opponent.lifePoints -= (weapon.damagePoints)
@@ -32,25 +28,24 @@ class Character {
     }
     
     
-//    func cure(target : Character){
-//        var curePoints = 10
-//        Character.cure
-//       
+    func cure(target : Character){
+        let curePoints = 10
+        target.lifePoints += 10
+        print("\(target.name) recovered \(curePoints)")
+    }
+       
     
     
-    //    func cure(){
-    //        if
-    //
-    //
-    
-    static func characterIsAlive(Character: Int) -> Bool {
-        let ptsLife = Character.self
-        if ptsLife <= 10 {
+    func characterIsAlive() -> Bool {
+        
+        if lifePoints > 0 {
             print ("You are underattack, fight back")
+            return true
         } else {
-            print("Your \(Character) is dead, choose another to fight")
+            print("Your \(name) is dead, choose another to fight")
+            return false
         }
-        return Character()
+        
     }
     
     

@@ -3,7 +3,7 @@
 import Foundation
 
 class Player: NSObject {
-    var playerName : String
+    var playerName : String //creating a player
     var characters = [Character]()
     let maxCharacterTeamPlayer = 3
     init(playerName:String) {
@@ -31,7 +31,6 @@ class Player: NSObject {
     
     static func createPlayer() -> Player {
         print("Choose a name for your player")
-        
         while let playerName = readLine() {
             let player = Player(playerName: playerName)
             player.createCharacters()
@@ -82,10 +81,10 @@ class Player: NSObject {
            choice < Weapon.weapons.count {
             let weapon =  Weapon.weapons[choice]
             
-            print  ("Your weapon is \(weapon.name)")
+            print("Your weapon is \(weapon.name)")
             return weapon
         } else {
-            print ("wrong choice")
+            print("wrong choice")
             return pickAWeapon()
         }
         
@@ -122,43 +121,24 @@ class Player: NSObject {
     }
     
     
-    
+    // to verify is the player is still alive, we have to check if all of his characters (team) are alive
     func playerIsAlive() -> Bool {
-        
-        while playerIsAlive(playerOne) {
-            character.attack(opponent: Character)
-        }
-        
-       
-}
-                print("You can still win the fight, fight back")
+        for character in characters {
+            if character.characterIsAlive() {
+                print("\(character.name) is alive,continue the fight")
+                return true
             } else {
-             print("Your character is dead, choose another character to fight")
+                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+
             }
+            
         }
+        return false
     }
     
     
-//La boucle de tour par tour doit tenir compte d'une "inversion" entre les player: à chaque tour, le player opponent devient le currentPlayer et vice versa
-//Bien faire attention à la syntaxe et aux nomenclatures: un type commence par une majuscule, une variable ou constante par une minuscule. Bien indenter son code pour une lecture plus aisée.
-//
-    //   print (
-    //        """
-    //        Choose a character from your team to start the first battle \
-    //        \press 1 for your first character to be the fighter \
-    //        press 2 for your second character to be the fighter \
-    //        press 3 for your third character to be the fighter \
-    //        """
-    //   )
-    
-    
-    
-    //    func playerIsAlive() -> Bool {
-    //        while ==    < 0
-    //                print("Continue the fight")
-    //    }
-    //    return playerIsAlive()
-   
+}
+
 
 
 

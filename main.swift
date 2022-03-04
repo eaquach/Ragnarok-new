@@ -32,79 +32,85 @@ class Game {
     }
     
     
+    
+    /* le joueur 1 choisit un personnage de son équipe et attaque le joueur de la partie adverse
+     le joueur de la partie adversaire riposte avec son joueur,
+     si l'un des personnages est mort dans l'équipe, on passe à un autre personnage
+     on vérifie s'il y a des membres de notre équipe vivante
+     */
+    
+    func startGame() {
+//        setCurrentPlayer()
+        playerStart = isPlayerOneStart? playerOne: playerTwo
+        notPlayerStart = isPlayerOneStart? playerTwo :playerOne
         
-        /* le joueur 1 choisit un personnage de son équipe et attaque le joueur de la partie adverse
-         le joueur de la partie adversaire riposte avec son joueur,
-         si l'un des personnages est mort dans l'équipe, on passe à un autre personnage
-         on vérifie s'il y a des membres de notre équipe vivante
-         */
+        guard let playerStart = playerStart else { return }
+        guard let notPlayerStart = notPlayerStart else { return}
         
-            func startFight() {
-                while playerIsAlive(playerOne){
-                    playerOne.Character.cattack(opponent: <#T##Character#>)
-                  
-                    {
-                    // this code will keep running
-                      if (playerIsAlive == false)
-                      {
-                        // eventually if this stopping condition is true,
-                        // it will break out of the while loop
-                        break;
-                       }
-                     }
-        //
-        //            // rest of the program will continue
-        //            <#code#>
-                    
-                    
-                    
-                    
-                    func whoIsTheWinner() -> Bool {
-                        if playerOne.characters.isEmpty {
-                            print("\(self.playerOne.playerName) has no longer characters to play, the winner is \(self.playerTwo.playerName)")
-                            
-                            return true
-                        }
-                        if playerTwo.characters.isEmpty {
-                            print("\(self.playerTwo.playerName) has no longer characters to play, the winner is \(self.playerOne.playerName)")
-                            
-                            return true
-                        }
+        if playerStart {
+            print("\(name.playerOne), choose to attack or heal")
+        } else {
+            print("\(name.playerTwo), choose to attack or heal")
+        }
+        
+        playerStart.characterIsAlive()
+        
+            
+            
+            //            while gameIsOn (playerOne.pickAFighter()) && (playerTwo.pickAFighter()){
+            //                    print("the battle is still on, don't give up")
+            //                    let fighter = playerOne.pickAFighter()
+            //                    let opponent = playerTwo.pickAFighter()
+            //                fighter.attack(opponent: Character)
+            //                    opponent.attack(opponent: Character)
+            
+            
+            
+        }
+        
+        
     }
     
     
     
-    //        while playerOne.characters.count != 0 || playerTwo.characters.count != 0 {
-    //            print("\(currentPlayer) choose a character from your team to start the fight")
-    //
-    //            let fighter = playerOne.pickAFighter()
-    //
-    //            let opponentFighter = playerTwo.pickAFighter()
-    //            opponentFighter.attack(opponent: Character)
-    
-    
-    
-    
-    
-    
-    
-    
-    let game = Game()
-    game.welcomeGameMessage()
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // create your team, choice of 3 characters
-    
-    
-    
+    func whoIsTheWinner() -> Player {
+        if playerOne.characters.isEmpty {
+            print("\(self.playerOne.playerName) has no longer characters to play, the winner is \(self.playerTwo.playerName)")
+            
+            return playerTwo
+        }
+        if playerTwo.characters.isEmpty {
+            print("\(self.playerTwo.playerName) has no longer characters to play, the winner is \(self.playerOne.playerName)")
+            
+            return playerOne
+        }
+        return currentPlayer
+    }
+}
+
+
+
+
+
+
+
+let game = Game()
+game.welcomeGameMessage()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// create your team, choice of 3 characters
+
+
+
