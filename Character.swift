@@ -8,7 +8,6 @@ class Character {
     static var names = [String]()
     
     //    settings of all characters
-//    var character : Character
     var name:String
     var lifePoints = 100
     var weapon : Weapon
@@ -21,7 +20,7 @@ class Character {
     
     
     func attack(opponent : Character) {
-        print("attack from \(name)","damage points with\(name)")
+        print("attack from \(name)","damage points with \(weapon.name)")
         opponent.lifePoints -= (weapon.damagePoints)
         print("\(opponent.name) looses \(weapon.damagePoints) pts")
         

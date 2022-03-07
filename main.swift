@@ -23,10 +23,10 @@ class Game {
     
     func welcomeGameMessage() {
         print("""
-              Hello warriors, welcome \(playerOne.playerName),welcome \(playerTwo.playerName) to the combat ring!
-              Congratulations, you have complete the first step, you have created your team !
+              Hello warrior \(playerOne.playerName), hello warrior \(playerTwo.playerName), welcome to the combat ring!
+              
+              Congratulations, you have complete the first step, you have created your team ! 
               We can now start our first fight.
-              Let's go!
               """)
         
     }
@@ -40,7 +40,7 @@ class Game {
      */
     
     func fight() {
-        
+        while playerOne.isAlive() || playerTwo.isAlive() {
         print("\(playerOne.playerName), pick a fighter to start the battle")
         let fighter = playerOne.pickAFighter()
         
@@ -50,17 +50,18 @@ class Game {
         fighter.attack(opponent:opponentFighter)
         opponentFighter.attack(opponent: fighter)
         
+            
+         // comment faire pour demander au player de choisir d'attaquer ou de cure, il faut également afficher les points de vie des characters
+        
+            
+        }
+        
     }
     
     
     
     
     
-    
-    
-    
-
-
 
 
 func whoIsTheWinner() -> Player {
@@ -93,18 +94,6 @@ game.fight()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// create your team, choice of 3 characters
 
 
 

@@ -30,7 +30,7 @@ class Player: NSObject {
     
     
     static func createPlayer() -> Player {
-        print("Choose a name for your player")
+        print("Welcome to the Ragnorak battle, choose a name for your player")
         while let playerName = readLine() {
             let player = Player(playerName: playerName)
             player.createCharacters()
@@ -96,28 +96,28 @@ class Player: NSObject {
         Select a character from your team to fight, by pressing the associated number:
         """)
         
-        for (index, characters) in characters.enumerated() {
-            print("Character \(index): \(characters.name)")
+        for (index,character) in characters.enumerated() {
+            print("Character \(index): \(character.name)")
         }
         
         
         if let characterIndex = readLine(),
            let characterChoice = Int(characterIndex),
            characterChoice >= 0,
-           characterChoice < characters.count {
+           characterChoice < maxCharacterTeamPlayer {
             var fighter = characters[characterChoice]
             
             switch characterChoice {
-            case 1:
-                print("You choose\(Character.names) as the fighter")
+            case 0:
+                print("You choose \(characters[0].name) as the fighter")
                 fighter = self.characters[0]
                 
-            case 2:
-                print("You choose\(Character.names) as the fighter")
+            case 1:
+                print("You choose \(characters[1].name) as the fighter")
                 fighter = self.characters[1]
                 
-            case 3:
-                print("You choose\(Character.names) as the fighter")
+            case 2:
+                print("You choose \(characters[2].name) as the fighter")
                 fighter = self.characters[2]
                 
             default:
