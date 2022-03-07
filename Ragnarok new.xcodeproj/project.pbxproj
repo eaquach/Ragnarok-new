@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B447AA1827D5F11300FFDD68 /* Chest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B447AA1727D5F11300FFDD68 /* Chest.swift */; };
 		C83B7112278E02F300AB3058 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B7111278E02F300AB3058 /* main.swift */; };
 		C83B7119278E044D00AB3058 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B7118278E044D00AB3058 /* Player.swift */; };
 		C83B711B278E04B500AB3058 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B711A278E04B500AB3058 /* Weapon.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B447AA1727D5F11300FFDD68 /* Chest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chest.swift; sourceTree = "<group>"; };
 		C83B710E278E02F300AB3058 /* Ragnarok new */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Ragnarok new"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83B7111278E02F300AB3058 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C83B7118278E044D00AB3058 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				C83B711C278E050D00AB3058 /* Axe.swift */,
 				C83B711E278E058A00AB3058 /* BowArrow.swift */,
 				C83B7120278E05A200AB3058 /* Sword.swift */,
+				B447AA1727D5F11300FFDD68 /* Chest.swift */,
 			);
 			path = Weapon;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				C83B7123278E074700AB3058 /* Character.swift in Sources */,
 				C83B7112278E02F300AB3058 /* main.swift in Sources */,
 				C83B711D278E050D00AB3058 /* Axe.swift in Sources */,
+				B447AA1827D5F11300FFDD68 /* Chest.swift in Sources */,
 				C83B711B278E04B500AB3058 /* Weapon.swift in Sources */,
 				C83B7121278E05A200AB3058 /* Sword.swift in Sources */,
 			);

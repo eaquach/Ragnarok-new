@@ -23,8 +23,8 @@ class Game {
     
     func welcomeGameMessage() {
         print("""
-              Hello warriors, welcome to the combat ring!
-              Congratulations, you have your entire team !
+              Hello warriors, welcome \(playerOne.playerName),welcome \(playerTwo.playerName) to the combat ring!
+              Congratulations, you have complete the first step, you have created your team !
               We can now start our first fight.
               Let's go!
               """)
@@ -39,53 +39,43 @@ class Game {
      on vérifie s'il y a des membres de notre équipe vivante
      */
     
-    func startGame() {
-//        setCurrentPlayer()
-        playerStart = isPlayerOneStart? playerOne: playerTwo
-        notPlayerStart = isPlayerOneStart? playerTwo :playerOne
+    func fight() {
         
-        guard let playerStart = playerStart else { return }
-        guard let notPlayerStart = notPlayerStart else { return}
+        print("\(playerOne.playerName), pick a fighter to start the battle")
+        let fighter = playerOne.pickAFighter()
         
-        if playerStart {
-            print("\(name.playerOne), choose to attack or heal")
-        } else {
-            print("\(name.playerTwo), choose to attack or heal")
-        }
+        print("\(playerTwo.playerName), now it's your turn to choose a fighter")
+        let opponentFighter = playerTwo.pickAFighter()
         
-        playerStart.characterIsAlive()
-        
-            
-            
-            //            while gameIsOn (playerOne.pickAFighter()) && (playerTwo.pickAFighter()){
-            //                    print("the battle is still on, don't give up")
-            //                    let fighter = playerOne.pickAFighter()
-            //                    let opponent = playerTwo.pickAFighter()
-            //                fighter.attack(opponent: Character)
-            //                    opponent.attack(opponent: Character)
-            
-            
-            
-        }
-        
+        fighter.attack(opponent:opponentFighter)
+        opponentFighter.attack(opponent: fighter)
         
     }
     
     
     
-    func whoIsTheWinner() -> Player {
-        if playerOne.characters.isEmpty {
-            print("\(self.playerOne.playerName) has no longer characters to play, the winner is \(self.playerTwo.playerName)")
-            
-            return playerTwo
-        }
-        if playerTwo.characters.isEmpty {
-            print("\(self.playerTwo.playerName) has no longer characters to play, the winner is \(self.playerOne.playerName)")
-            
-            return playerOne
-        }
-        return currentPlayer
+    
+    
+    
+    
+    
+
+
+
+
+func whoIsTheWinner() -> Player {
+    if playerOne.characters.isEmpty {
+        print("\(self.playerOne.playerName) has no longer characters to play, the winner is \(self.playerTwo.playerName)")
+        
+        return playerTwo
     }
+    if playerTwo.characters.isEmpty {
+        print("\(self.playerTwo.playerName) has no longer characters to play, the winner is \(self.playerOne.playerName)")
+        
+        return playerOne
+    }
+    return currentPlayer
+}
 }
 
 
@@ -96,6 +86,10 @@ class Game {
 
 let game = Game()
 game.welcomeGameMessage()
+game.fight()
+
+
+
 
 
 

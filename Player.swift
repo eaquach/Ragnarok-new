@@ -81,7 +81,7 @@ class Player: NSObject {
            choice < Weapon.weapons.count {
             let weapon =  Weapon.weapons[choice]
             
-            print("Your weapon is \(weapon.name)")
+            print("Your weapon is a \(weapon.name)")
             return weapon
         } else {
             print("wrong choice")
@@ -92,53 +92,63 @@ class Player: NSObject {
     
     
     func pickAFighter() -> Character {
-        var fighter : Character
-        var characterChoice = ""
-        repeat {
-            if let choice = readLine() {
-                characterChoice = choice
-            }
-            
-        } while characterChoice != "1" && characterChoice != "2" && characterChoice != "3"
+        print("""
+        Select a character from your team to fight, by pressing the associated number:
+        """)
         
-        switch characterChoice {
-        case "1":
-            print("You choose\(Character.names) as the fighter")
-            fighter = self.characters[0]
-            
-        case "2":
-            print("You choose\(Character.names) as the fighter")
-            fighter = self.characters[1]
-            
-        case "3":
-            print("You choose\(Character.names) as the fighter")
-            fighter = self.characters[2]
-            
-        default:
-            fighter = self.characters[0]
+        for (index, characters) in characters.enumerated() {
+            print("Character \(index): \(characters.name)")
         }
-        return fighter
-    }
-    
-    
-    // to verify is the player is still alive, we have to check if all of his characters (team) are alive
-    func playerIsAlive() -> Bool {
-        for character in characters {
-            if character.characterIsAlive() {
-                print("\(character.name) is alive,continue the fight")
-                return true
-            } else {
-                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
-
+        
+        
+        if let characterIndex = readLine(),
+           let characterChoice = Int(characterIndex),
+           characterChoice >= 0,
+           characterChoice < characters.count {
+            var fighter = characters[characterChoice]
+            
+            switch characterChoice {
+            case 1:
+                print("You choose\(Character.names) as the fighter")
+                fighter = self.characters[0]
+                
+            case 2:
+                print("You choose\(Character.names) as the fighter")
+                fighter = self.characters[1]
+                
+            case 3:
+                print("You choose\(Character.names) as the fighter")
+                fighter = self.characters[2]
+                
+            default:
+                print("You have to choose a fighter")
+                return pickAFighter()
             }
-            
+          return fighter
         }
-        return false
+        return pickAFighter()
     }
     
-    
-}
-
-
+        
+        
+        // to verify is the player is still alive, we have to check if all of his characters (team) are alive
+        func isAlive() -> Bool {
+            for character in characters {
+                if character.characterIsAlive() {
+                    print("\(character.name) is alive,continue the fight")
+                    return true
+                    
+                } else {
+                    print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+                }
+                
+            }
+            return false
+        }
+        
+        
+        
+        
+    }
 
 
