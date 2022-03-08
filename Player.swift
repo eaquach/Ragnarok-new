@@ -97,7 +97,7 @@ class Player: NSObject {
         """)
         
         for (index,character) in characters.enumerated() {
-            print("Character \(index): \(character.name)")
+            print("Character \(index): \(character.name)") // list all characters + filtre d'option genre A et B
         }
         
         
@@ -106,7 +106,13 @@ class Player: NSObject {
            characterChoice >= 0,
            characterChoice < maxCharacterTeamPlayer {
             var fighter = characters[characterChoice]
-            
+           
+            if fighter.characterIsAlive(){
+             //   you choose ...fighter
+             //   else you have to ch
+                // return fighter
+            }
+                
             switch characterChoice {
             case 0:
                 print("You choose \(characters[0].name) as the fighter")
@@ -124,31 +130,68 @@ class Player: NSObject {
                 print("You have to choose a fighter")
                 return pickAFighter()
             }
-          return fighter
+            return fighter
         }
         return pickAFighter()
     }
     
-        
-        
-        // to verify is the player is still alive, we have to check if all of his characters (team) are alive
-        func isAlive() -> Bool {
-            for character in characters {
-                if character.characterIsAlive() {
-                    print("\(character.name) is alive,continue the fight")
-                    return true
-                    
-                } else {
-                    print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
-                }
-                
-            }
-            return false
+    
+    func selectACharacterToCure() -> Character {
+        print("""
+        Select a character from your team to be cured, by pressing the associated number:
+        """)
+        for (index,character) in characters.enumerated() {
+            print("Character \(index): \(character.name)")
         }
         
-        
-        
-        
+        if let characterIndex = readLine(),
+           let characterChoice = Int(characterIndex),
+           characterChoice >= 0,
+           characterChoice < maxCharacterTeamPlayer {
+            var characterToCure = characters[characterChoice]
+            
+            switch characterChoice {
+            case 0:
+                print("You choose \(characters[0].name) to be cured")
+                characterToCure = self.characters[0]
+                
+            case 1:
+                print("You choose \(characters[1].name) to be cured")
+                characterToCure = self.characters[1]
+                
+            case 2:
+                print("You choose \(characters[2].name) to be cured")
+                characterToCure = self.characters[2]
+                
+            default:
+                print("You have to choose a character to cure ")
+                return selectACharacterToCure()
+            }
+            return characterToCure
+        }
+        return selectACharacterToCure()
     }
+    
+    
+    
+    // to verify is the player is still alive, we have to check if all of his characters (team) are alive
+    func isAlive() -> Bool {
+        for character in characters {
+            if character.characterIsAlive() {
+                print("\(character.name) is alive,continue the fight")
+                return true
+                
+            } else {
+                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+            }
+            
+        }
+        return false
+    }
+    
+}
+
+
+
 
 

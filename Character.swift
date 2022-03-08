@@ -36,12 +36,11 @@ class Character {
     
     
     func characterIsAlive() -> Bool {
-        
         if lifePoints > 0 {
-            print ("You are underattack, fight back")
+            print ("\(name) You are underattack, fight back")
             return true
         } else {
-            print("Your \(name) is dead, choose another to fight")
+            print("Your \(name) is dead, choose another character to fight")
             return false
         }
         

@@ -25,12 +25,11 @@ class Game {
         print("""
               Hello warrior \(playerOne.playerName), hello warrior \(playerTwo.playerName), welcome to the combat ring!
               
-              Congratulations, you have complete the first step, you have created your team ! 
+              Congratulations, you have complete the first step, you have created your team !
               We can now start our first fight.
               """)
         
     }
-    
     
     
     /* le joueur 1 choisit un personnage de son équipe et attaque le joueur de la partie adverse
@@ -38,45 +37,49 @@ class Game {
      si l'un des personnages est mort dans l'équipe, on passe à un autre personnage
      on vérifie s'il y a des membres de notre équipe vivante
      */
+    func startGame () {
+        while playerOne.isAlive() || playerTwo.isAlive() {
+            fight()
+        }
+    }
     
     func fight() {
-        while playerOne.isAlive() || playerTwo.isAlive() {
         print("\(playerOne.playerName), pick a fighter to start the battle")
         let fighter = playerOne.pickAFighter()
         
         print("\(playerTwo.playerName), now it's your turn to choose a fighter")
         let opponentFighter = playerTwo.pickAFighter()
         
-        fighter.attack(opponent:opponentFighter)
-        opponentFighter.attack(opponent: fighter)
-        
+        while fighter.characterIsAlive() || opponentFighter.characterIsAlive() {
+            fighter.attack(opponent: opponentFighter)
+            opponentFighter.attack(opponent: fighter)
             
-         // comment faire pour demander au player de choisir d'attaquer ou de cure, il faut également afficher les points de vie des characters
-        
+            if playerTwo.isAlive() == true {
+                continue
+            }
+            if playerTwo.isAlive() == false {
+                break
+            }
+            swap(&playerOne, &playerTwo)
             
         }
         
     }
-    
-    
-    
-    
-    
 
-
-func whoIsTheWinner() -> Player {
-    if playerOne.characters.isEmpty {
-        print("\(self.playerOne.playerName) has no longer characters to play, the winner is \(self.playerTwo.playerName)")
-        
-        return playerTwo
+    
+    func whoIsTheWinner() -> Player {
+        if playerOne.characters.isEmpty {
+            print("\(self.playerOne.playerName) has no longer characters to play, the winner is \(self.playerTwo.playerName)")
+            
+            return playerTwo
+        }
+        if playerTwo.characters.isEmpty {
+            print("\(self.playerTwo.playerName) has no longer characters to play, the winner is \(self.playerOne.playerName)")
+            
+            return playerOne
+        }
+        return currentPlayer
     }
-    if playerTwo.characters.isEmpty {
-        print("\(self.playerTwo.playerName) has no longer characters to play, the winner is \(self.playerOne.playerName)")
-        
-        return playerOne
-    }
-    return currentPlayer
-}
 }
 
 
@@ -87,7 +90,7 @@ func whoIsTheWinner() -> Player {
 
 let game = Game()
 game.welcomeGameMessage()
-game.fight()
+game.startGame()
 
 
 
