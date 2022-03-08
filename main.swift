@@ -4,22 +4,22 @@ import Foundation
 class Game {
     var playerOne : Player // teamOne
     var playerTwo : Player // teamTwo
-    var currentPlayer: Player // player that is playing
+//    var currentPlayer: Player // player that is playing
     var scoreOne: Int
     var scoreTwo: Int
     
     init() {
         self.playerOne = Player.createPlayer()
         self.playerTwo = Player.createPlayer()
-        self.currentPlayer = playerOne
+//        self.currentPlayer = playerOne
         scoreOne = 0
         scoreTwo = 0
     }
     
-    func setCurrentPlayer() {
-        currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
-    }
-    
+//    func setCurrentPlayer() {
+//        currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
+//    }
+//
     
     func welcomeGameMessage() {
         print("""
@@ -37,11 +37,6 @@ class Game {
      si l'un des personnages est mort dans l'équipe, on passe à un autre personnage
      on vérifie s'il y a des membres de notre équipe vivante
      */
-    func startGame () {
-        while playerOne.isAlive() || playerTwo.isAlive() {
-            fight()
-        }
-    }
     
     func fight() {
         print("\(playerOne.playerName), pick a fighter to start the battle")
@@ -50,7 +45,7 @@ class Game {
         print("\(playerTwo.playerName), now it's your turn to choose a fighter")
         let opponentFighter = playerTwo.pickAFighter()
         
-        while fighter.characterIsAlive() || opponentFighter.characterIsAlive() {
+        while playerOne.isAlive() || playerTwo.isAlive() {
             fighter.attack(opponent: opponentFighter)
             opponentFighter.attack(opponent: fighter)
             
@@ -78,7 +73,7 @@ class Game {
             
             return playerOne
         }
-        return currentPlayer
+        return playerOne
     }
 }
 
@@ -90,7 +85,7 @@ class Game {
 
 let game = Game()
 game.welcomeGameMessage()
-game.startGame()
+game.fight()
 
 
 
