@@ -41,7 +41,7 @@ class Game {
     func fight() {
         print("\(playerOne.playerName), pick a fighter to start the battle")
         let fighter = playerOne.pickAFighter()
-        
+
         print("\(playerTwo.playerName), now it's your turn to choose a fighter")
         let opponentFighter = playerTwo.pickAFighter()
         
@@ -51,6 +51,7 @@ class Game {
             
             if playerTwo.isAlive() == true {
                 continue
+                
             }
             if playerTwo.isAlive() == false {
                 break

@@ -4,11 +4,13 @@ import Foundation
 
 class Player: NSObject {
     var playerName : String //creating a player
-    var characters = [Character]()
+    var characters = [Character]() // creating an array of characters
+    var filteredArray: [Character] = [] // creating an array with a filter condition
     let maxCharacterTeamPlayer = 3
     init(playerName:String) {
         self.playerName = playerName
     }
+    
     
     
     
@@ -96,88 +98,31 @@ class Player: NSObject {
         Select a character from your team to fight, by pressing the associated number:
         """)
         
-        for (index,character) in characters.enumerated() {
-            print("Character \(index): \(character.name)") // list all characters + filtre d'option genre A et B
-        }
+        filteredArray = characters.filter({ $0.characterIsAlive() }) // list all characters + filtre d'option genre A et B
         
-        
-        if let characterIndex = readLine(),
-           let characterChoice = Int(characterIndex),
-           characterChoice >= 0,
-           characterChoice < maxCharacterTeamPlayer {
-            let fighter = characters[characterChoice]
+        for (index,character) in filteredArray.enumerated() {
+            print("Character \(index): \(character.name)")
             
-            if fighter.characterIsAlive(){
-                print("You choose \(characters[0].name) as the fighter")
-                print("You choose \(characters[1].name) as the fighter")
-                print("You choose \(characters[2].name) as the fighter")
-                return fighter
-            } else {
-                print("You have to choose a fighter")
-                return pickAFighter()
-            }
         }
-        return pickAFighter()
-    }
-        //            switch characterChoice {
-        //            case 0:
-        //                print("You choose \(characters[0].name) as the fighter")
-        //                fighter = self.characters[0]
-        //
-        //            case 1:
-        //                print("You choose \(characters[1].name) as the fighter")
-        //                fighter = self.characters[1]
-        //
-        //            case 2:
-        //                print("You choose \(characters[2].name) as the fighter")
-        //                fighter = self.characters[2]
-        //
-        //            default:
-        //                print("You have to choose a fighter")
-        //                return pickAFighter()
-        //            }
-        //            return fighter
-        //        }
-        //        return pickAFighter()
-        
-        
-        
-        //        func selectACharacterToCure() -> Character {
-        //            print("""
-        //        Select a character from your team to be cured, by pressing the associated number:
-        //        """)
-        //            for (index,character) in characters.enumerated() {
-        //                print("Character \(index): \(character.name)")
-        //            }
-        //
-        //            if let characterIndex = readLine(),
-        //               let characterChoice = Int(characterIndex),
-        //               characterChoice >= 0,
-        //               characterChoice < maxCharacterTeamPlayer {
-        //                var characterToCure = characters[characterChoice]
-        //
-        //                switch characterChoice {
-        //                case 0:
-        //                    print("You choose \(characters[0].name) to be cured")
-        //                    characterToCure = self.characters[0]
-        //
-        //                case 1:
-        //                    print("You choose \(characters[1].name) to be cured")
-        //                    characterToCure = self.characters[1]
-        //
-        //                case 2:
-        //                    print("You choose \(characters[2].name) to be cured")
-        //                    characterToCure = self.characters[2]
-        //
-        //                default:
-        //                    print("You have to choose a character to cure ")
-        //                    return selectACharacterToCure()
-        //                }
-        //                return characterToCure
-        //            }
-        //            return selectACharacterToCure()
-        //        }
-        
+            
+            if let characterIndex = readLine(),
+               let characterChoice = Int(characterIndex),
+               characterChoice >= 0,
+               characterChoice < maxCharacterTeamPlayer {
+                let fighter = characters[characterChoice]
+                
+                if fighter.characterIsAlive(){
+                    print("You choose \(characters[characterChoice].name) as the fighter")
+//                    print("You choose \(characters[1].name) as the fighter")
+//                    print("You choose \(characters[2].name) as the fighter")
+                    return fighter
+                } else {
+                    print("You have to choose a fighter")
+                    
+                }
+            }
+            return pickAFighter()
+        }
         
         
         // to verify is the player is still alive, we have to check if all of his characters (team) are alive
@@ -198,5 +143,5 @@ class Player: NSObject {
         
         
         
-    
-}
+        
+    }
