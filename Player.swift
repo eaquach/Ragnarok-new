@@ -5,7 +5,7 @@ import Foundation
 class Player: NSObject {
     var playerName : String //creating a player
     var characters = [Character]() // creating an array of characters
-    var filteredArray: [Character] = [] // creating an array with a filter condition
+//    var filteredArray: [Character] = [] // creating an array with a filter condition
     let maxCharacterTeamPlayer = 3
     init(playerName:String) {
         self.playerName = playerName
@@ -98,50 +98,49 @@ class Player: NSObject {
         Select a character from your team to fight, by pressing the associated number:
         """)
         
-        filteredArray = characters.filter({ $0.characterIsAlive() }) // list all characters + filtre d'option genre A et B
+        let aliveCharacters = characters.filter({ return $0.characterIsAlive() }) // list all characters + filtre d'option genre A et B
         
-        for (index,character) in filteredArray.enumerated() {
+        for (index,character) in aliveCharacters.enumerated() {
             print("Character \(index): \(character.name)")
             
         }
+        
+        if let characterIndex = readLine(),
+           let characterChoice = Int(characterIndex),
+           characterChoice >= 0,
+           characterChoice < maxCharacterTeamPlayer {
+            let fighter = aliveCharacters[characterChoice]
             
-            if let characterIndex = readLine(),
-               let characterChoice = Int(characterIndex),
-               characterChoice >= 0,
-               characterChoice < maxCharacterTeamPlayer {
-                let fighter = characters[characterChoice]
+            if fighter.characterIsAlive(){
+                print("You choose \(fighter.name) as the fighter")
                 
-                if fighter.characterIsAlive(){
-                    print("You choose \(characters[characterChoice].name) as the fighter")
-//                    print("You choose \(characters[1].name) as the fighter")
-//                    print("You choose \(characters[2].name) as the fighter")
-                    return fighter
-                } else {
-                    print("You have to choose a fighter")
-                    
-                }
-            }
-            return pickAFighter()
-        }
-        
-        
-        // to verify is the player is still alive, we have to check if all of his characters (team) are alive
-        func isAlive() -> Bool {
-            for character in characters {
-                if character.characterIsAlive() {
-                    print("\(character.name) is alive,continue the fight")
-                    return true
-                    
-                } else {
-                    print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
-                }
+                return fighter
+            } else {
+                print("You have to choose a fighter")
                 
             }
-            return false
         }
-        
-        
-        
-        
-        
+        return pickAFighter()
     }
+    
+    
+    // to verify is the player is still alive, we have to check if all of his characters (team) are alive
+    func isAlive() -> Bool {
+        for character in characters {
+            if character.characterIsAlive() {
+                print("\(character.name) is alive,continue the fight")
+                return true
+                
+            } else {
+                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+            }
+            
+        }
+        return false
+    }
+    
+    
+    
+    
+    
+}

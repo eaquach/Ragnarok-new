@@ -39,23 +39,24 @@ class Game {
      */
     
     func fight() {
-        print("\(playerOne.playerName), pick a fighter to start the battle")
-        let fighter = playerOne.pickAFighter()
-
-        print("\(playerTwo.playerName), now it's your turn to choose a fighter")
-        let opponentFighter = playerTwo.pickAFighter()
-        
         while playerOne.isAlive() || playerTwo.isAlive() {
-            fighter.attack(opponent: opponentFighter)
-            opponentFighter.attack(opponent: fighter)
+            print("\(playerOne.playerName), pick a fighter to start the battle")
+            let fighter = playerOne.pickAFighter()
+
+            print("\(playerTwo.playerName), now it's your turn to choose a fighter")
+            let opponentFighter = playerTwo.pickAFighter()
             
-            if playerTwo.isAlive() == true {
-                continue
+            fighter.attack(opponent: opponentFighter) // proposez une liste des characters vivants soit attack ou cure
+            
+            opponentFighter.displayLifepoints()
+            
+//            if fighter.lifePoints <= 30 {
+//                fighter.cure(target: fighter)
+//            }
+            
                 
-            }
-            if playerTwo.isAlive() == false {
-                break
-            }
+            
+            
             swap(&playerOne, &playerTwo)
             
         }
