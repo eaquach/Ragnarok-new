@@ -5,7 +5,6 @@ import Foundation
 class Player: NSObject {
     var playerName : String //creating a player
     var characters = [Character]() // creating an array of characters
-//    var filteredArray: [Character] = [] // creating an array with a filter condition
     let maxCharacterTeamPlayer = 3
     init(playerName:String) {
         self.playerName = playerName
