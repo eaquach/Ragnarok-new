@@ -4,22 +4,25 @@ import Foundation
 class Game {
     var playerOne : Player // teamOne
     var playerTwo : Player // teamTwo
-//    var currentPlayer: Player // player that is playing
+    //    var currentPlayer: Player // player that is playing
     var scoreOne: Int
     var scoreTwo: Int
+   
+    
     
     init() {
         self.playerOne = Player.createPlayer()
         self.playerTwo = Player.createPlayer()
-//        self.currentPlayer = playerOne
+        //        self.currentPlayer = playerOne
         scoreOne = 0
         scoreTwo = 0
     }
     
-//    func setCurrentPlayer() {
-//        currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
-//    }
-//
+    //    func setCurrentPlayer() {
+    //        currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
+    //    }
+    //
+    
     
     func welcomeGameMessage() {
         print("""
@@ -27,6 +30,7 @@ class Game {
               
               Congratulations, you have complete the first step, you have created your team !
               We can now start our first fight.
+              
               """)
         
     }
@@ -42,7 +46,7 @@ class Game {
         while playerOne.isAlive() || playerTwo.isAlive() {
             print("\(playerOne.playerName), pick a fighter to start the battle")
             let fighter = playerOne.pickAFighter()
-
+            
             print("\(playerTwo.playerName), now it's your turn to choose a fighter")
             let opponentFighter = playerTwo.pickAFighter()
             
@@ -50,11 +54,11 @@ class Game {
             
             opponentFighter.displayLifepoints()
             
-//            if fighter.lifePoints <= 30 {
-//                fighter.cure(target: fighter)
-//            }
+            //            if fighter.lifePoints <= 30 {
+            //                fighter.cure(target: fighter)
+            //            }
             
-                
+            
             
             
             swap(&playerOne, &playerTwo)
@@ -62,7 +66,7 @@ class Game {
         }
         
     }
-
+    
     
     func whoIsTheWinner() -> Player {
         if playerOne.characters.isEmpty {
@@ -77,6 +81,17 @@ class Game {
         }
         return playerOne
     }
+    
+    var randomNumbers : [Int] = []
+    for _ in 0...5 {
+        let randomInt = Int.random(in: 1...10)
+        randomNumbers.append(randomInt)
+    }
+    //            let randomInt = Int(arc4random_uniform(5))
+    //            let randomCharacter = playerOne.characters[randomIndex]
+    //            let randomElement = arc4random_uniform(5)
+    print("A magic chest has appeared, you have received an extra weapon, a sword")
+    
 }
 
 

@@ -50,6 +50,15 @@ class Character {
         print("\(name) has \(lifePoints) life points")
               }
     
+    
+    func chestBonus(chest: Chest) {
+        weapon = chest.weapon
+        print("You have received an extra weapon, a sword that can give an extra (\(weapon.damagePoints) damage points")
+    }
+
 }
+
+
+    
 
 

@@ -127,7 +127,7 @@ class Player: NSObject {
     func isAlive() -> Bool {
         for character in characters {
             if character.characterIsAlive() {
-                print("\(character.name) is alive,continue the fight")
+//                print("\(character.name) is alive,continue the fight")
                 return true
                 
             } else {
