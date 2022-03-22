@@ -29,7 +29,7 @@ class Character {
     
     func cure(target : Character){
         let curePoints = 10
-        target.lifePoints += 10
+        target.lifePoints += curePoints
         print("\(target.name) recovered \(curePoints)")
     }
        
@@ -50,11 +50,21 @@ class Character {
         print("\(name) has \(lifePoints) life points")
               }
     
+
+    
     
     func chestBonus(chest: Chest) {
-        weapon = chest.weapon
+        weapon = chest
         print("You have received an extra weapon, a sword that can give an extra (\(weapon.damagePoints) damage points")
     }
+    
+  
+    
+            
+            
+   
+                            
+
 
 }
 

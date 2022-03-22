@@ -1,21 +1,16 @@
 
 import Foundation
-class Chest {
-    var weapon : Weapon // création d'une nouvelle arme, une épée qui va doubler les damagePoints
-    var name : String
-    var damagePoints : Int
+class Chest: Weapon {
+    // création d'une nouvelle arme, une épée qui va doubler les damagePoints
     
-    init(weapon: Weapon, name : String, damagePoints: Int) {
-        self.weapon = weapon
-        self.name = "chest"
-        self.damagePoints = 20
+    init () {
+        super.init(name : " magic sword" , damagePoints: 20 )
     }
-    
-   func attack() {
-        attack()
-        print("attack with the magic sword,\(damagePoints) damage points")
-        weapon = Sword()
+    override func attack() {
+        print("attack with a magic sword,\(damagePoints) damage points")
+        super.attack()
     }
+
 }
 
 let chest = Sword()

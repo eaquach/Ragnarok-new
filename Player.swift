@@ -123,11 +123,12 @@ class Player: NSObject {
     }
     
     
+    
     // to verify is the player is still alive, we have to check if all of his characters (team) are alive
     func isAlive() -> Bool {
         for character in characters {
             if character.characterIsAlive() {
-//                print("\(character.name) is alive,continue the fight")
+                //                print("\(character.name) is alive,continue the fight")
                 return true
                 
             } else {
@@ -139,7 +140,29 @@ class Player: NSObject {
     }
     
     
+    //enum case ???
+    func nextAction (_: character){ // attack or cure
+        print("Choose your next action : press 1 to attack, press 2 to cure")
+       
+        if let readLine = readLine() {
+
+            if let choice = Int (readLine) {
+                switch choice {
+                case 1:
+                    self.cure(target: playerOne.characters) // choisir des characters de son équipe
+                case 2:
+                    self.attack(opponent: actualCharacter)
+                default:
+                    print("Choose your next action")
+
+                }
+            }
+        }
     
-    
+    }
     
 }
+
+
+
+

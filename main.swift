@@ -7,7 +7,7 @@ class Game {
     //    var currentPlayer: Player // player that is playing
     var scoreOne: Int
     var scoreTwo: Int
-   
+    
     
     
     init() {
@@ -43,29 +43,28 @@ class Game {
      */
     
     func fight() {
-        while playerOne.isAlive() || playerTwo.isAlive() {
+        while playerOne.isAlive() && playerTwo.isAlive() {
             print("\(playerOne.playerName), pick a fighter to start the battle")
             let fighter = playerOne.pickAFighter()
             
             print("\(playerTwo.playerName), now it's your turn to choose a fighter")
             let opponentFighter = playerTwo.pickAFighter()
             
-            fighter.attack(opponent: opponentFighter) // proposez une liste des characters vivants soit attack ou cure
-            
+            fighter.attack(opponent: opponentFighter)
             opponentFighter.displayLifepoints()
+            //            fighter.nextAction(actualCharacter: playerOne)
+            //            opponentFighter.nextAction(actualCharacter: playerTwo)
             
-            //            if fighter.lifePoints <= 30 {
-            //                fighter.cure(target: fighter)
-            //            }
-            
-            
-            
-            
-            swap(&playerOne, &playerTwo)
             
         }
         
+        
+        
+        swap(&playerOne, &playerTwo)
+        
     }
+    
+    
     
     
     func whoIsTheWinner() -> Player {
@@ -82,23 +81,16 @@ class Game {
         return playerOne
     }
     
-    var randomNumbers : [Int] = []
-    for _ in 0...5 {
-        let randomInt = Int.random(in: 1...10)
-        randomNumbers.append(randomInt)
+    
+    
+    func randomMagicChest() { // comme un dé
+        _ = Int.random(in: 1...6)
+        print("A magic chest has appeared, you have received an extra weapon, a magic sword")
+        
     }
-    //            let randomInt = Int(arc4random_uniform(5))
-    //            let randomCharacter = playerOne.characters[randomIndex]
-    //            let randomElement = arc4random_uniform(5)
-    print("A magic chest has appeared, you have received an extra weapon, a sword")
+    
     
 }
-
-
-
-
-
-
 
 let game = Game()
 game.welcomeGameMessage()
