@@ -91,13 +91,12 @@ class Player: NSObject {
         
     }
     
-    
-    func pickAFighter() -> Character {
+    func pickACharacter(character:Character? = nil) -> Character {
         print("""
-        Select a character from your team to fight, by pressing the associated number:
+        Select a character from your team to attack or cure, by pressing the associated number:
         """)
         
-        let aliveCharacters = characters.filter({ return $0.characterIsAlive() }) // list all characters + filtre d'option genre A et B
+        let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list all characters + filtre d'option genre A et B
         
         for (index,character) in aliveCharacters.enumerated() {
             print("Character \(index): \(character.name)")
@@ -106,60 +105,63 @@ class Player: NSObject {
         
         if let characterIndex = readLine(),
            let characterChoice = Int(characterIndex),
-           characterChoice >= 0,
+           
+            characterChoice >= 0,
            characterChoice < maxCharacterTeamPlayer {
-            let fighter = aliveCharacters[characterChoice]
+            let characterPlaying = aliveCharacters[characterChoice]
             
-            if fighter.characterIsAlive(){
-                print("You choose \(fighter.name) as the fighter")
+            if characterPlaying.characterIsAlive() {
+                print("You choose \(characterPlaying.name) as your character")
+                //                return characterPlaying
                 
-                return fighter
             } else {
-                print("You have to choose a fighter")
-                
+                print("Choose an action for your character, press a to attack, b to cure")
             }
+            
+         // add a new method pickAnAction
+            
+            if let actionChoice: String = readLine() {
+                switch actionChoice {
+                    
+                case "a" :
+                    print("You choose \(characterPlaying.name) to attack ")
+                    characterPlaying.attack(opponent: characterPlaying)
+                    
+                    
+                case "b" :
+                    print("You choose \(characterPlaying.name) to cure ")
+                    characterPlaying.cure(target: characterPlaying)
+                    
+                default :
+                    print("You have to assigned an action to your character")
+                    
+                }
+            }
+            
         }
-        return pickAFighter()
+        return pickACharacter()
     }
+    
     
     
     
     // to verify is the player is still alive, we have to check if all of his characters (team) are alive
     func isAlive() -> Bool {
         for character in characters {
-            if character.characterIsAlive() {
-                //                print("\(character.name) is alive,continue the fight")
-                return true
+            guard character.characterIsAlive() else {
+                print("\(character.name) is alive,continue the fight")
+                break
                 
-            } else {
+            }
+            guard !character.characterIsAlive() else {
                 print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+                continue
             }
             
         }
         return false
     }
     
-    
-    //enum case ???
-    func nextAction (_: character){ // attack or cure
-        print("Choose your next action : press 1 to attack, press 2 to cure")
-       
-        if let readLine = readLine() {
-
-            if let choice = Int (readLine) {
-                switch choice {
-                case 1:
-                    self.cure(target: playerOne.characters) // choisir des characters de son équipe
-                case 2:
-                    self.attack(opponent: actualCharacter)
-                default:
-                    print("Choose your next action")
-
-                }
-            }
-        }
-    
-    }
     
 }
 

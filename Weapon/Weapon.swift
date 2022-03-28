@@ -22,5 +22,11 @@ class Weapon {
 }
 
 
-
+extension Weapon:Equatable {
+    static func == (lhs: Weapon, rhs: Weapon) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    
+}
 
