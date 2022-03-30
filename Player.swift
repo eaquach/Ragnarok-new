@@ -115,14 +115,14 @@ class Player: NSObject {
             } else {
                 print("You have to choose a character")
             }
-            return pickACharacter()
+            return character
             
         }
         return pickACharacter()
     }
     
-   
-    func pickAnAction(character:Character? = nil) -> Character {
+    
+    func pickAnAction(character:Character) {
         
         print("Pick an action for your character, by pressing 1 for attack and 2 for cure")
         
@@ -133,31 +133,42 @@ class Player: NSObject {
             
         }
         
-        if let characterIndex = readLine(),
-           let actionChoice = Int(characterIndex),
-           actionChoice >= 0,
-          actionChoice < maxCharacterTeamPlayer {
-           let character = aliveCharacters[actionChoice]
-            
-            switch actionChoice {
-                
-                
-            case 1 :
-                print("You choose \(character.name) to attack  ")
-                character.attack(opponent: character)
-                
-                
-            case 2 :
-                print("You choose \(character.name) to cure ")
-                character.cure(target: character)
-                
-            default :
-                print("You have to assigned an action to your character")
-                
-            }
+        guard let characterIndex = readLine(),
+              !characterIndex.isEmpty else {
+            pickAnAction(character: character)
+            return
         }
-        return pickAnAction()
+        
+        
+        
+        guard let actionChoice = Int(characterIndex),
+              actionChoice >= 0,
+              actionChoice < maxCharacterTeamPlayer else {
+            print("Wrong choice")
+            pickAnAction(character: character)
+            return
+        }
+        
+        let character = aliveCharacters[actionChoice]
+        switch actionChoice {
+            
+            
+        case 1 :
+            print("You choose \(character.name) to attack  ")
+            character.attack(opponent: character)
+            
+            
+        case 2 :
+            print("You choose \(character.name) to cure ")
+            character.cure(target: character)
+            
+        default :
+            print("You have to assigned an action to your character")
+            
+        }
     }
+    
+    
     
     
     

@@ -11,12 +11,20 @@ class Game {
     
     
     init() {
-        self.playerOne = Player.createPlayer()
-        self.playerTwo = Player.createPlayer()
-        self.currentPlayer = playerOne
         scoreOne = 0
         scoreTwo = 0
     }
+    
+    func start() {
+        playerOne = Player.createPlayer()
+        playerTwo = Player.createPlayer()
+        currentPlayer = playerOne
+        setCurrentPlayer()
+        welcomeGameMessage()
+        fight()
+        
+    }
+    
     
     func setCurrentPlayer() {
         currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
@@ -47,11 +55,7 @@ class Game {
             print("\(playerOne.playerName), pick a fighter to start the battle")
             currentPlayer = playerOne
             let fighter = currentPlayer.pickACharacter()
-            currentPlayer.pickAnAction(except:fighter)
-            
-            
-            
-            
+           
             
             
             print("\(playerTwo.playerName), now it's your turn to choose a fighter")
@@ -103,9 +107,7 @@ class Game {
     }
 }
 
-let game = Game()
-game.welcomeGameMessage()
-game.fight()
+
 
 
 
