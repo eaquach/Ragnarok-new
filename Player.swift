@@ -110,90 +110,89 @@ class Player: NSObject {
             
             if character.characterIsAlive() {
                 print("You choose \(character.name) as your character")
-                //                return characterPlaying
+                
                 
             } else {
                 print("You have to choose a character")
-            }
-            return character
-            
-        }
-        return pickACharacter()
-    }
-    
-    
-    func pickAnAction(character:Character) {
-        
-        print("Pick an action for your character, by pressing 1 for attack and 2 for cure")
-        
-        let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list all characters + filtre d'option genre A et B
-        
-        for (index,character) in aliveCharacters.enumerated() {
-            print("Character \(index): \(character.name)")
-            
-        }
-        
-        guard let characterIndex = readLine(),
-              !characterIndex.isEmpty else {
-            pickAnAction(character: character)
-            return
-        }
-        
-        
-        
-        guard let actionChoice = Int(characterIndex),
-              actionChoice >= 0,
-              actionChoice < maxCharacterTeamPlayer else {
-            print("Wrong choice")
-            pickAnAction(character: character)
-            return
-        }
-        
-        let character = aliveCharacters[actionChoice]
-        switch actionChoice {
-            
-            
-        case 1 :
-            print("You choose \(character.name) to attack  ")
-            character.attack(opponent: character)
-            
-            
-        case 2 :
-            print("You choose \(character.name) to cure ")
-            character.cure(target: character)
-            
-        default :
-            print("You have to assigned an action to your character")
-            
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    // to verify is the player is still alive, we have to check if all of his characters (team) are alive
-    func isAlive() -> Bool {
-        for character in characters {
-            guard character.characterIsAlive() else {
-                print("\(character.name) is alive,continue the fight")
-                break
                 
             }
-            guard !character.characterIsAlive() else {
-                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
-                continue
+          
+        }
+        return character
+    }
+        
+        func pickAnAction(character:Character) {
+            
+            print("Pick an action for your character, by pressing 1 for attack and 2 for cure")
+            
+            let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list all characters + filtre d'option genre A et B
+            
+            for (index,character) in aliveCharacters.enumerated() {
+                print("Character \(index): \(character.name)")
+                
             }
             
+            guard let characterIndex = readLine(),
+                  !characterIndex.isEmpty else {
+                pickAnAction(character: character)
+                return
+            }
+            
+            
+            
+            guard let actionChoice = Int(characterIndex),
+                  actionChoice >= 0,
+                  actionChoice < maxCharacterTeamPlayer else {
+                print("Wrong choice")
+                pickAnAction(character: character)
+                return
+            }
+            
+            let character = aliveCharacters[actionChoice]
+            switch actionChoice {
+                
+                
+            case 1 :
+                print("You choose \(character.name) to attack  ")
+                character.attack(opponent: character)
+                
+                
+            case 2 :
+                print("You choose \(character.name) to cure ")
+                character.cure(target: character)
+                
+            default :
+                print("You have to assigned an action to your character")
+                
+            }
         }
-        return false
+        
+        
+        
+        
+        
+        
+        
+        
+        // to verify is the player is still alive, we have to check if all of his characters (team) are alive
+        func isAlive() -> Bool {
+            for character in characters {
+                guard character.characterIsAlive() else {
+                    print("\(character.name) is alive,continue the fight")
+                    break
+                    
+                }
+                guard !character.characterIsAlive() else {
+                    print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+                    continue
+                }
+                
+            }
+            return false
+        }
+        
+        
+        
     }
     
-    
-    
-}
-
 

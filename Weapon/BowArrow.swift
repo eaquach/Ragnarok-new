@@ -1,5 +1,6 @@
 
 import Foundation
+
 class BowArrow: Weapon {
     init() {
         super.init(name: "bowArrow", damagePoints:15)

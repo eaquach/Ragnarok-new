@@ -2,18 +2,13 @@
 import Foundation
 
 class Game {
-    var playerOne : Player // teamOne
-    var playerTwo : Player // teamTwo
-    var currentPlayer: Player // player that is playing
-    var scoreOne: Int
-    var scoreTwo: Int
+    var playerOne = Player(playerName: "playerOne") // teamOne
+    var playerTwo = Player(playerName: "playerTwo") // teamTwo
+    var currentPlayer = Player(playerName: "cuurentPlayer") // player that is playing
+    var scoreOne :Int = 0
+    var scoreTwo :Int = 0
+
     
-    
-    
-    init() {
-        scoreOne = 0
-        scoreTwo = 0
-    }
     
     func start() {
         playerOne = Player.createPlayer()
@@ -33,6 +28,7 @@ class Game {
     
     
     func welcomeGameMessage() {
+    
         print("""
               Hello warrior \(playerOne.playerName), hello warrior \(playerTwo.playerName), welcome to the combat ring!
               
@@ -51,11 +47,13 @@ class Game {
      */
     
     func fight() {
+        
         while playerOne.isAlive() && playerTwo.isAlive() {
-            print("\(playerOne.playerName), pick a fighter to start the battle")
+        print("\(playerOne.playerName), pick a fighter to start the battle")
             currentPlayer = playerOne
             let fighter = currentPlayer.pickACharacter()
-           
+            currentPlayer.pickAnAction(character: fighter)
+            
             
             
             print("\(playerTwo.playerName), now it's your turn to choose a fighter")
@@ -80,13 +78,14 @@ class Game {
     
     
     func whoIsTheWinner() -> Player? {
+        
         if playerOne.characters.isEmpty {
-            print("\(self.playerOne.playerName) has no longer characters to play, the winner is \(self.playerTwo.playerName)")
+            print("\(playerOne.playerName) has no longer characters to play, the winner is \(playerTwo.playerName)")
             
             return playerTwo
         }
         if playerTwo.characters.isEmpty {
-            print("\(self.playerTwo.playerName) has no longer characters to play, the winner is \(self.playerOne.playerName)")
+            print("\(playerTwo.playerName) has no longer characters to play, the winner is \(playerOne.playerName)")
             
             return playerOne
         }
