@@ -92,9 +92,7 @@ class Player: NSObject {
     }
     
     func pickACharacter(character:Character? = nil) -> Character {
-        print("""
-        Select a character from your team to attack or cure, by pressing the associated number:
-        """)
+        print("Select a character from your team to play, by pressing the associated number:")
         
         let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list all characters + filtre d'option genre A et B
         
@@ -108,39 +106,60 @@ class Player: NSObject {
            
             characterChoice >= 0,
            characterChoice < maxCharacterTeamPlayer {
-            let characterPlaying = aliveCharacters[characterChoice]
+            let character = aliveCharacters[characterChoice]
             
-            if characterPlaying.characterIsAlive() {
-                print("You choose \(characterPlaying.name) as your character")
+            if character.characterIsAlive() {
+                print("You choose \(character.name) as your character")
                 //                return characterPlaying
                 
             } else {
-                print("Choose an action for your character, press a to attack, b to cure")
+                print("You have to choose a character")
             }
-            
-         // add a new method pickAnAction
-            
-            if let actionChoice: String = readLine() {
-                switch actionChoice {
-                    
-                case "a" :
-                    print("You choose \(characterPlaying.name) to attack ")
-                    characterPlaying.attack(opponent: characterPlaying)
-                    
-                    
-                case "b" :
-                    print("You choose \(characterPlaying.name) to cure ")
-                    characterPlaying.cure(target: characterPlaying)
-                    
-                default :
-                    print("You have to assigned an action to your character")
-                    
-                }
-            }
+            return pickACharacter()
             
         }
         return pickACharacter()
     }
+    
+   
+    func pickAnAction(character:Character? = nil) -> Character {
+        
+        print("Pick an action for your character, by pressing 1 for attack and 2 for cure")
+        
+        let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list all characters + filtre d'option genre A et B
+        
+        for (index,character) in aliveCharacters.enumerated() {
+            print("Character \(index): \(character.name)")
+            
+        }
+        
+        if let characterIndex = readLine(),
+           let actionChoice = Int(characterIndex),
+           actionChoice >= 0,
+          actionChoice < maxCharacterTeamPlayer {
+           let character = aliveCharacters[actionChoice]
+            
+            switch actionChoice {
+                
+                
+            case 1 :
+                print("You choose \(character.name) to attack  ")
+                character.attack(opponent: character)
+                
+                
+            case 2 :
+                print("You choose \(character.name) to cure ")
+                character.cure(target: character)
+                
+            default :
+                print("You have to assigned an action to your character")
+                
+            }
+        }
+        return pickAnAction()
+    }
+    
+    
     
     
     
@@ -163,8 +182,7 @@ class Player: NSObject {
     }
     
     
+    
 }
-
-
 
 

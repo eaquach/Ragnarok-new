@@ -4,7 +4,7 @@ import Foundation
 class Game {
     var playerOne : Player // teamOne
     var playerTwo : Player // teamTwo
-    //        var currentPlayer: Player // player that is playing
+    var currentPlayer: Player // player that is playing
     var scoreOne: Int
     var scoreTwo: Int
     
@@ -13,14 +13,14 @@ class Game {
     init() {
         self.playerOne = Player.createPlayer()
         self.playerTwo = Player.createPlayer()
-        //                self.currentPlayer = playerOne
+        self.currentPlayer = playerOne
         scoreOne = 0
         scoreTwo = 0
     }
     
-    //        func setCurrentPlayer() {
-    //            currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
-    //        }
+    func setCurrentPlayer() {
+        currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
+    }
     
     
     
@@ -45,7 +45,14 @@ class Game {
     func fight() {
         while playerOne.isAlive() && playerTwo.isAlive() {
             print("\(playerOne.playerName), pick a fighter to start the battle")
-            let fighter = playerOne.pickACharacter()
+            currentPlayer = playerOne
+            let fighter = currentPlayer.pickACharacter()
+            currentPlayer.pickAnAction(except:fighter)
+            
+            
+            
+            
+            
             
             print("\(playerTwo.playerName), now it's your turn to choose a fighter")
             let opponentFighter = playerTwo.pickACharacter()
