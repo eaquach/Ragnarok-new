@@ -38,8 +38,7 @@ class Game {
               """)
         
     }
-    
-    
+
     /* the 1st player pick a character from his team and fight the opponent character .
     player 2 will fight back with his character ,if one of the character from a team is dead, we choose another character to continue the fight
      and we check if the characters of our team is still alive
@@ -47,23 +46,27 @@ class Game {
     
     func fight() {
         
-        while playerOne.isAlive() && playerTwo.isAlive() {
+//        while playerOne.isAlive() && playerTwo.isAlive() {
+        while playerOne.characters.count != 0 && playerTwo.characters.count != 0 {
         print("\(playerOne.playerName), pick a fighter to start the battle")
             currentPlayer = playerOne
             let fighter = currentPlayer.pickACharacter()
-            currentPlayer.pickAnAction(character: fighter)
+            let characterPicked = currentPlayer.pickACharacter()
+            currentPlayer.pickAnAction(character: characterPicked)
             
             
             
             print("\(playerTwo.playerName), now it's your turn to choose a fighter")
             currentPlayer = playerTwo
             let opponentFighter = currentPlayer.pickACharacter()
-            currentPlayer.pickAnAction(character: opponentFighter)
+            let characterPicked2 = currentPlayer.pickACharacter()
+            currentPlayer.pickAnAction(character: characterPicked2)
+          
             
             randomMagicChest(target: fighter)
             
-            fighter.attack(opponent: opponentFighter)
-            opponentFighter.displayLifepoints()
+//            fighter.attack(opponent: opponentFighter)
+//            opponentFighter.displayLifepoints()
             
             if let winner = whoIsTheWinner(){
                 print("The Battle is Finished,\(winner.playerName) is the winner")
