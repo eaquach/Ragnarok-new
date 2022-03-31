@@ -91,6 +91,8 @@ class Player: NSObject {
         
     }
     
+    
+    
     func pickACharacter(character:Character? = nil) -> Character {
         print("Select a character from your team to play, by pressing the associated number:")
         
@@ -110,16 +112,17 @@ class Player: NSObject {
             
             if character.characterIsAlive() {
                 print("You choose \(character.name) as your character")
-                
-                
+                return character
             } else {
                 print("You have to choose a character")
-                
+                return pickACharacter()
             }
           
         }
-        return character
+        return pickACharacter()
     }
+        
+        
         
         func pickAnAction(character:Character) {
             
@@ -193,6 +196,6 @@ class Player: NSObject {
         
         
         
-    }
     
-
+    
+}
