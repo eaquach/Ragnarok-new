@@ -65,8 +65,8 @@ class Game {
             
             randomMagicChest(target: fighter)
             
-//            fighter.attack(opponent: opponentFighter)
-//            opponentFighter.displayLifepoints()
+            fighter.attack(opponent: opponentFighter)
+            opponentFighter.displayLifepoints()
             
             if let winner = whoIsTheWinner(){
                 print("The Battle is Finished,\(winner.playerName) is the winner")
