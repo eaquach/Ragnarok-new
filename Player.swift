@@ -6,8 +6,8 @@ class Player: NSObject {
     enum ActionChoice: Int {
         case attack = 1
         case cure = 2
-        
     }
+    
     var playerName : String //creating a player
     var characters = [Character]() // creating an array of characters
     let maxCharacterTeamPlayer = 3
@@ -76,7 +76,7 @@ class Player: NSObject {
         print("\nSelect a weapon from the following list, by pressing the associated number:\n")
         
         for (index, weapon) in Weapon.weapons.enumerated() {
-            print("Item \(index): \(weapon.name)")
+            print("Item \(index): \(weapon.name), \(weapon.damagePoints) damage points")
         }
         
         if let indexValue = readLine(),
@@ -102,7 +102,7 @@ class Player: NSObject {
         let aliveCharactersExcept = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list of all characters
         
         for (index,character) in aliveCharactersExcept.enumerated() {
-            print("Character \(index):\(character.name)")
+            print("Character \(index):\(character.name), \(character.weapon.damagePoints), \(character.lifePoints) lifepoints")
         }
         
         
@@ -159,7 +159,6 @@ class Player: NSObject {
     func isAlive() -> Bool {
         for character in characters {
             if character.characterIsAlive() {
-                print("\(character.name) is alive,continue the fight")
                 return true
                 
             } else {

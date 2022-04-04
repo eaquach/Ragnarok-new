@@ -3,7 +3,7 @@ import Foundation
 
 class BowArrow: Weapon {
     init() {
-        super.init(name: "bowArrow", damagePoints:15)
+        super.init(name: "bowArrow", damagePoints:10)
     }
     
     override func attack() {

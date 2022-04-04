@@ -34,7 +34,7 @@ class Game {
     func welcomeGameMessage() {
     
         print("""
-              Hello warrior \(currentPlayer.playerName), hello warrior \(opponentPlayer.playerName), welcome to the combat ring!
+              Hello Warrior \(currentPlayer.playerName), Hello Warrior \(opponentPlayer.playerName), welcome to the combat ring!
               
               Congratulations, you have complete the first step, you have created your team !
               We can now start our first fight.
@@ -43,15 +43,15 @@ class Game {
         
     }
 
-    /* the 1st player pick a character from his team and fight the opponent character .
-    player 2 will fight back with his character ,if one of the character from a team is dead, we choose another character to continue the fight
-     and we check if the characters of our team is still alive
-     */
+    //the 1st player pick a character from his team and fight the opponent character .
+//        player 2 will fight back with his character ,if one of the character from a team is dead, we choose another character to continue the fight
+//         and we check if the characters of our team is still alive
+
     
     func fight() {
         
         while currentPlayer.isAlive() && opponentPlayer.isAlive() {
-        print("\(currentPlayer.playerName), pick a fighter to start the battle\n")
+        print("\n\(currentPlayer.playerName), pick a fighter to start the battle\n")
 
             currentPlayer.displayLifepointsPlayer()
      
@@ -74,39 +74,20 @@ class Game {
                 let character = currentPlayer.pickACharacter(character: fighter)
                 print("You choose \(character.name) to cure ")
                 fighter.cure(target: character)
-                
-                
+        
             }
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             print("\n\(opponentPlayer.playerName), now it's your turn to choose a fighter\n")
-            
-        
-          
-            
-            
-            
-            
-          
-            
             if let winner = whoIsTheWinner(){
                 print("The Battle is Finished,\(winner.playerName) is the winner")
                 print(game.scoreOne , game.scoreTwo)
                 break
                 
             }
+            swap(&currentPlayer, &opponentPlayer)
         }
-        
-        swap(&currentPlayer, &opponentPlayer)
+
+//        swap(&currentPlayer, &opponentPlayer)
         
     }
     
