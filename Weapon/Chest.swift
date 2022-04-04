@@ -1,7 +1,7 @@
 
 import Foundation
 class Chest: Weapon {
-   // création d'une nouvelle arme, une épée qui va doubler les damagePoints
+   // a new weapon will double the damagepoints s
     
     init() {
         super.init(name : "magic sword" , damagePoints: 20 )

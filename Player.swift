@@ -31,7 +31,7 @@ class Player: NSObject {
     
     
     static func createPlayer() -> Player {
-        print("Welcome to the Ragnorak battle, choose a name for your player")
+        print("\nChoose a name for your player\n")
         while let playerName = readLine() {
             let player = Player(playerName: playerName)
             player.createCharacters()
@@ -54,7 +54,7 @@ class Player: NSObject {
     
     
     func createCharacter() -> Character {
-        print ("Enter a name for your character")
+        print ("\nEnter a name for your character\n")
         if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){
             let weapon = pickAWeapon()
             return Character(weapon: weapon,name: nameValue)
@@ -68,9 +68,7 @@ class Player: NSObject {
     
     
     func pickAWeapon() -> Weapon {
-        print("""
-        Select a weapon from the following list, by pressing the associated number:
-        """)
+        print("\nSelect a weapon from the following list, by pressing the associated number:\n")
         
         for (index, weapon) in Weapon.weapons.enumerated() {
             print("Item \(index): \(weapon.name)")
@@ -82,7 +80,7 @@ class Player: NSObject {
            choice < Weapon.weapons.count {
             let weapon =  Weapon.weapons[choice]
             
-            print("Your weapon is a \(weapon.name)")
+            print("\nYour weapon is a \(weapon.name)\n")
             return weapon
         } else {
             print("wrong choice")
@@ -95,13 +93,13 @@ class Player: NSObject {
     
     func pickACharacter(character:Character? = nil) -> Character {
         print("Select a character from your team to play, by pressing the associated number:")
-        
-        let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list all characters + filtre d'option genre A et B
-        
+      
+        let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list of all characters
+       
         for (index,character) in aliveCharacters.enumerated() {
-            print("Character \(index): \(character.name) :\(character.weapon.name) ,\(character.lifePoints) lifepoints")
-            
+            print("Character \(index):\(character.name), :\(character.weapon.name) ,\(character.lifePoints) lifepoints")
         }
+        
         
         if let characterIndex = readLine(),
            let characterChoice = Int(characterIndex),
@@ -115,12 +113,21 @@ class Player: NSObject {
                 return character
             } else {
                 print("You have to choose a character")
-                return pickACharacter()
             }
             
         }
-        return pickACharacter()
-
+        return pickACharacter(character: character)
+        
+    }
+    
+    
+    
+    func displayLifepointsPlayer() {
+        print("\(playerName), your three characters are ")
+        for character in characters {
+            print("\(character.name), has a \(character.weapon.name), and \(character.lifePoints) lifepoints")
+        }
+        
     }
     
     
@@ -171,45 +178,22 @@ class Player: NSObject {
         }
     }
     
-    
-    
-    
-    
-    
-    
-//
-//    // to verify is the player is still alive, we have to check if all of his characters (team) are alive
 //    func isAlive() -> Bool {
-//        for _ in characters {
-//
-//            guard characters.count != 0  else {
-//                print("\(playerName) is alive, continue the fight")
+//        for character in characters {
+//            guard character.characterIsAlive() else {
+//                print("\(character.name) is alive,continue the fight")
 //                break
+//                
 //            }
-//            guard characters.count >= 0 else {
-//                print("\(playerName) is dead, you have lost the game")
+//            guard !character.characterIsAlive() else {
+//                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
 //                continue
 //            }
+//            
 //        }
 //        return false
 //    }
-    
-    //                guard character.characterIsAlive() else {
-    //                    print("\(character.name) is alive,continue the fight")
-    //                    break
-    //
-    //                }
-    //                guard !character.characterIsAlive() else {
-    //                    print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
-    //                    continue
-    //                }
-    //
-    //            }
-    //            return false
-    //        }
-    
-    
-    
+
     
     
 }

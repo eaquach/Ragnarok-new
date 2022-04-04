@@ -11,6 +11,7 @@ class Game {
     
     
     func start() {
+        introductionGame()
         playerOne = Player.createPlayer()
         playerTwo = Player.createPlayer()
         currentPlayer = playerOne
@@ -25,7 +26,16 @@ class Game {
         currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
     }
     
-    
+    func introductionGame() {
+        print("""
+              Hello Warriors, welcome to the Ragnorak battle !
+              
+              Every player has three characters, you first step is to choose a name for your player and then a name for each of your character
+
+              """)
+        
+        
+    }
     
     func welcomeGameMessage() {
     
@@ -46,21 +56,22 @@ class Game {
     
     func fight() {
         
-//        while playerOne.isAlive() && playerTwo.isAlive() {
         while playerOne.characters.count != 0 && playerTwo.characters.count != 0 {
-        print("\(playerOne.playerName), pick a fighter to start the battle")
-            currentPlayer = playerOne
+        print("\(playerOne.playerName), pick a fighter to start the battle\n")
+            let currentPlayer = Player(playerName: "CurrentPlayer")
+            playerOne.displayLifepointsPlayer()
+            var enemyPlayer = Player(playerName: "EnemyPlayer")
             let fighter = currentPlayer.pickACharacter()
             let characterPicked = currentPlayer.pickACharacter()
             currentPlayer.pickAnAction(character: characterPicked)
             
             
             
-            print("\(playerTwo.playerName), now it's your turn to choose a fighter")
-            currentPlayer = playerTwo
-            let opponentFighter = currentPlayer.pickACharacter()
-            let characterPicked2 = currentPlayer.pickACharacter()
-            currentPlayer.pickAnAction(character: characterPicked2)
+            print("\n\(playerTwo.playerName), now it's your turn to choose a fighter\n")
+            enemyPlayer = playerTwo
+            let opponentFighter = enemyPlayer.pickACharacter()
+            let characterPicked2 = enemyPlayer.pickACharacter()
+            enemyPlayer.pickAnAction(character: characterPicked2)
           
             
             randomMagicChest(target: fighter)
@@ -99,7 +110,7 @@ class Game {
     
     
     
-    func randomMagicChest(target : Character) { // comme un dé
+    func randomMagicChest(target : Character) { //the chest will appear as a bonus, if the player is getting the number 3, he will get the bonus weapon
         let randomNumber = Int.random(in: 1...6)
         if randomNumber == 3 {
             let magicChest = Chest()
