@@ -2,9 +2,8 @@
 import Foundation
 
 class Game {
-    var playerOne = Player(playerName: "playerOne") // teamOne
-    var playerTwo = Player(playerName: "playerTwo") // teamTwo
-    var currentPlayer = Player(playerName: "cuurentPlayer") // player that is playing
+    var currentPlayer = Player(playerName: "currentPlayer") // teamOne
+    var opponentPlayer = Player(playerName: "opponentPlayer") // teamTwo
     var scoreOne :Int = 0
     var scoreTwo :Int = 0
 
@@ -12,19 +11,14 @@ class Game {
     
     func start() {
         introductionGame()
-        playerOne = Player.createPlayer()
-        playerTwo = Player.createPlayer()
-        currentPlayer = playerOne
-        setCurrentPlayer()
+        currentPlayer = Player.createPlayer()
+        opponentPlayer = Player.createPlayer()
         welcomeGameMessage()
         fight()
         
     }
     
     
-    func setCurrentPlayer() {
-        currentPlayer = currentPlayer == playerOne ? playerTwo : playerOne
-    }
     
     func introductionGame() {
         print("""
@@ -40,7 +34,7 @@ class Game {
     func welcomeGameMessage() {
     
         print("""
-              Hello warrior \(playerOne.playerName), hello warrior \(playerTwo.playerName), welcome to the combat ring!
+              Hello warrior \(currentPlayer.playerName), hello warrior \(opponentPlayer.playerName), welcome to the combat ring!
               
               Congratulations, you have complete the first step, you have created your team !
               We can now start our first fight.
@@ -56,28 +50,53 @@ class Game {
     
     func fight() {
         
-        while playerOne.characters.count != 0 && playerTwo.characters.count != 0 {
-        print("\(playerOne.playerName), pick a fighter to start the battle\n")
-            let currentPlayer = Player(playerName: "CurrentPlayer")
-            playerOne.displayLifepointsPlayer()
-            var enemyPlayer = Player(playerName: "EnemyPlayer")
+        while currentPlayer.isAlive() && opponentPlayer.isAlive() {
+        print("\(currentPlayer.playerName), pick a fighter to start the battle\n")
+
+            currentPlayer.displayLifepointsPlayer()
+     
             let fighter = currentPlayer.pickACharacter()
-            let characterPicked = currentPlayer.pickACharacter()
-            currentPlayer.pickAnAction(character: characterPicked)
+
+            let actionChoice = currentPlayer.pickAnAction()
+            
+
+            switch actionChoice {
+                
+                
+            case .attack :
+                randomMagicChest(target: fighter)
+                let opponentFighter = opponentPlayer.pickACharacter()
+                print("You choose to attack \( opponentFighter.name) ")
+                fighter.attack(opponent: opponentFighter)
+                opponentFighter.displayLifepoints()
+                
+            case .cure :
+                let character = currentPlayer.pickACharacter(character: fighter)
+                print("You choose \(character.name) to cure ")
+                fighter.cure(target: character)
+                
+                
+            }
             
             
             
-            print("\n\(playerTwo.playerName), now it's your turn to choose a fighter\n")
-            enemyPlayer = playerTwo
-            let opponentFighter = enemyPlayer.pickACharacter()
-            let characterPicked2 = enemyPlayer.pickACharacter()
-            enemyPlayer.pickAnAction(character: characterPicked2)
+            
+            
+            
+            
+            
+            
+            
+            
+            print("\n\(opponentPlayer.playerName), now it's your turn to choose a fighter\n")
+            
+        
           
             
-            randomMagicChest(target: fighter)
             
-            fighter.attack(opponent: opponentFighter)
-            opponentFighter.displayLifepoints()
+            
+            
+          
             
             if let winner = whoIsTheWinner(){
                 print("The Battle is Finished,\(winner.playerName) is the winner")
@@ -87,7 +106,7 @@ class Game {
             }
         }
         
-        swap(&playerOne, &playerTwo)
+        swap(&currentPlayer, &opponentPlayer)
         
     }
     
@@ -95,15 +114,15 @@ class Game {
     
     func whoIsTheWinner() -> Player? {
         
-        if playerOne.characters.isEmpty {
-            print("\(playerOne.playerName) has no longer characters to play, the winner is \(playerTwo.playerName)")
+        if currentPlayer.characters.isEmpty {
+            print("\(currentPlayer.playerName) has no longer characters to play, the winner is \(opponentPlayer.playerName)")
             
-            return playerTwo
+            return opponentPlayer
         }
-        if playerTwo.characters.isEmpty {
-            print("\(playerTwo.playerName) has no longer characters to play, the winner is \(playerOne.playerName)")
+        if opponentPlayer.characters.isEmpty {
+            print("\(opponentPlayer.playerName) has no longer characters to play, the winner is \(currentPlayer.playerName)")
             
-            return playerOne
+            return currentPlayer
         }
         return nil
     }

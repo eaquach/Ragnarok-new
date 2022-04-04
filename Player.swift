@@ -3,6 +3,11 @@
 import Foundation
 
 class Player: NSObject {
+    enum ActionChoice: Int {
+        case attack = 1
+        case cure = 2
+        
+    }
     var playerName : String //creating a player
     var characters = [Character]() // creating an array of characters
     let maxCharacterTeamPlayer = 3
@@ -92,12 +97,12 @@ class Player: NSObject {
     
     
     func pickACharacter(character:Character? = nil) -> Character {
-        print("Select a character from your team to play, by pressing the associated number:")
-      
-        let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list of all characters
-       
-        for (index,character) in aliveCharacters.enumerated() {
-            print("Character \(index):\(character.name), :\(character.weapon.name) ,\(character.lifePoints) lifepoints")
+        print("Select a character to play with , by pressing the associated number:")
+        
+        let aliveCharactersExcept = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list of all characters
+        
+        for (index,character) in aliveCharactersExcept.enumerated() {
+            print("Character \(index):\(character.name)")
         }
         
         
@@ -106,24 +111,25 @@ class Player: NSObject {
            
             characterChoice >= 0,
            characterChoice < maxCharacterTeamPlayer {
-            let character = aliveCharacters[characterChoice]
+            let character = aliveCharactersExcept[characterChoice]
             
             if character.characterIsAlive() {
                 print("You choose \(character.name) as your character")
+                
                 return character
             } else {
                 print("You have to choose a character")
             }
             
         }
-        return pickACharacter(character: character)
+        return pickACharacter()
         
     }
     
     
     
     func displayLifepointsPlayer() {
-        print("\(playerName), your three characters are ")
+        print("Your three characters are:")
         for character in characters {
             print("\(character.name), has a \(character.weapon.name), and \(character.lifePoints) lifepoints")
         }
@@ -132,69 +138,46 @@ class Player: NSObject {
     
     
     
-    func pickAnAction(character:Character) {
+    func pickAnAction() -> ActionChoice {
         
         print("Pick an action for your character, by pressing 1 for attack and 2 for cure")
         
-        let aliveCharacters = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list all characters + filtre d'option genre A et B
-        
-        for (index,character) in aliveCharacters.enumerated() {
-            print("Character \(index): \(character.name)")
-            
-        }
-        
-        guard let characterIndex = readLine(),
-              !characterIndex.isEmpty else {
-            pickAnAction(character: character)
-            return
-        }
-        
-        
-        
-        guard let actionChoice = Int(characterIndex),
-              actionChoice >= 0,
-              actionChoice < maxCharacterTeamPlayer else {
+    
+        guard let actionIndex = readLine(),
+            let actionChoiceRawValue = Int(actionIndex),
+              let actionChoice = ActionChoice(rawValue: actionChoiceRawValue)
+              else {
             print("Wrong choice")
-            pickAnAction(character: character)
-            return
+          return  pickAnAction()
+            
         }
+        return actionChoice
         
-        let character = aliveCharacters[actionChoice]
-        switch actionChoice {
-            
-            
-        case 1 :
-            print("You choose \(character.name) to attack  ")
-            character.attack(opponent: character)
-            
-            
-        case 2 :
-            print("You choose \(character.name) to cure ")
-            character.cure(target: character)
-            
-        default :
-            print("You have to assigned an action to your character")
-            
-        }
+      
     }
     
-//    func isAlive() -> Bool {
-//        for character in characters {
-//            guard character.characterIsAlive() else {
-//                print("\(character.name) is alive,continue the fight")
-//                break
-//                
-//            }
-//            guard !character.characterIsAlive() else {
-//                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
-//                continue
-//            }
-//            
-//        }
-//        return false
-//    }
+    func isAlive() -> Bool {
+        for character in characters {
+            if character.characterIsAlive() {
+                print("\(character.name) is alive,continue the fight")
+                return true
+                
+            } else {
+                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+            }
+            
+        }
+        return false
+    }
+    
 
+    }
     
     
-}
+    
+    
+    
+    
+    
+
 
