@@ -20,9 +20,9 @@ class Character {
     
     
     func attack(opponent : Character) {
-        print("attack from \(name)","damage points with \(weapon.name)")
+        print("Attack from \(name),with \(weapon.name)")
         opponent.lifePoints -= (weapon.damagePoints)
-        print("\(opponent.name) looses \(weapon.damagePoints) pts")
+        print("\(opponent.name) looses \(weapon.damagePoints) points")
         
     }
     
@@ -30,14 +30,14 @@ class Character {
     func cure(target : Character){
         let curePoints = 10
         target.lifePoints += curePoints
-        print("\(target.name) recovered \(curePoints)")
+        print("\(target.name) recovered \(curePoints) points")
     }
        
     
     
     func characterIsAlive() -> Bool {
         if lifePoints > 80 {
-//            print ("\(name), has\(lifePoints) lifepoints left")
+//            print ("\(name), has \(lifePoints) lifepoints left")
             return true
         } else {
 //            print("Your \(name) is dead, choose another character to fight")

@@ -59,7 +59,7 @@ class Player: NSObject {
     
     
     func createCharacter() -> Character {
-        print ("\nEnter a name for your character\n")
+        print ("\nEnter a name for your character")
         if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){
             let weapon = pickAWeapon()
             return Character(weapon: weapon,name: nameValue)
@@ -97,12 +97,10 @@ class Player: NSObject {
     
     
     func pickACharacter(character:Character? = nil) -> Character {
-        print("Select a character to play with , by pressing the associated number:")
-        
         let aliveCharactersExcept = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list of all characters
         
         for (index,character) in aliveCharactersExcept.enumerated() {
-            print("Character \(index):\(character.name), \(character.weapon.damagePoints), \(character.lifePoints) lifepoints")
+            print("\nCharacter \(index):\(character.name), weapon:\(character.weapon.name), \(character.lifePoints) lifepoints\n")
         }
         
         
@@ -140,7 +138,7 @@ class Player: NSObject {
     
     func pickAnAction() -> ActionChoice {
         
-        print("Pick an action for your character, by pressing 1 for attack and 2 for cure")
+        print("\nPick an action for your character, by pressing 1 for attack and 2 for cure\n")
         
     
         guard let actionIndex = readLine(),
