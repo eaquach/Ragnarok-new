@@ -4,9 +4,10 @@ import Foundation
 class Game {
     var currentPlayer = Player(playerName: "currentPlayer") // teamOne
     var opponentPlayer = Player(playerName: "opponentPlayer") // teamTwo
-    var scoreOne :Int = 0
-    var scoreTwo :Int = 0
-    
+    var incrementationTour : Int = 0
+//    var scoreOne :Int = 0
+//    var scoreTwo :Int = 0
+    //tour
     
     
     func start() {
@@ -24,8 +25,8 @@ class Game {
         print("""
               Hello Warriors, welcome to the Ragnorak battle !
               \nThere is two players in the combat ring\n
-              Every player has three characters
-              \nYour first step is to choose a name for your player and then a name for each of your character\n
+              Every player has three characters and each character has a weapon
+              \nYour first step is to choose a name for your player, then a name for each of your character and then a weapon\n
               """)
         
         
@@ -43,30 +44,25 @@ class Game {
         
     }
     
-    //the 1st player pick a character from his team and fight the opponent character,
-    //    player 2 will fight back with his character ,if one of the character from a team is dead, we choose another character to continue the fight and we check if the characters of our team is still alive
     
     
     func fight() { //start of the battle, using a loop while to run the fight
         
         while currentPlayer.isAlive() && opponentPlayer.isAlive() {
-            print("\n\(currentPlayer.playerName), select a character to play with , by pressing the index number :")
+            print("\n\(currentPlayer.playerName),it's your turn, select a character to play with , by pressing the index number :")
             
             let fighter = currentPlayer.pickACharacter()
             
             let actionChoice = currentPlayer.pickAnAction()
-          
-            print("\n\(opponentPlayer.playerName), now it's your turn to choose a fighter\n")
             
-            switch actionChoice {
-                
-                
+            print("\n\(opponentPlayer.playerName), now it's your turn,select a character to play with , by pressing the index number :")
+            
+            switch actionChoice {//explication
             case .attack :
-                print("\nChoose a character in the opponent team")
                 let opponentFighter = opponentPlayer.pickACharacter()
                 print("\nA magic chest has appeared, let's see if you get the bonus")
                 randomMagicChest(target: fighter)
-                print("You choose to attack \( opponentFighter.name) ")
+                print("\(currentPlayer.playerName) choose to attack \(opponentFighter.name)")
                 fighter.attack(opponent: opponentFighter)
                 opponentFighter.displayLifepoints()
                 
@@ -80,14 +76,13 @@ class Game {
                 
             }
             
-            
             if let winner = whoIsTheWinner(){
                 print("The Battle is Finished,\(winner.playerName) is the winner")
-                print(game.scoreOne , game.scoreTwo)
+//                print(game.scoreOne,game.scoreTwo)
                 break
                 
             }
-            swap(&currentPlayer, &opponentPlayer)
+            swap(&currentPlayer, &opponentPlayer)// switch the players between turns
         }
         
     }
@@ -96,12 +91,11 @@ class Game {
     
     func whoIsTheWinner() -> Player? {
         
-        if currentPlayer.characters.isEmpty {
+        guard currentPlayer.characters.isEmpty else {
             print("\(currentPlayer.playerName) has no longer characters to play, the winner is \(opponentPlayer.playerName)")
-            
             return opponentPlayer
         }
-        if opponentPlayer.characters.isEmpty {
+       guard opponentPlayer.characters.isEmpty else {
             print("\(opponentPlayer.playerName) has no longer characters to play, the winner is \(currentPlayer.playerName)")
             
             return currentPlayer
@@ -112,18 +106,28 @@ class Game {
     
     
     func randomMagicChest(target : Character) { //the chest will appear as a bonus, if the player is getting the number 3, he will get the bonus weapon
-        let randomNumber = Int.random(in: 1...6)
-        if randomNumber == 3 {
+        let randomNumber = Int.random(in: 2...4)
+       guard randomNumber == 3 else {
+           print("\nYou didn't get the bonus, try next time\n")
+           return
+       }
             let magicChest = Chest()
             target.chestBonus(chest: magicChest)
             print("\nA magic chest has appeared, \(target.name) have received an extra weapon, a magic sword with \(magicChest.damagePoints)\n")
-        } else {
-            print("\nYou didn't get the bonus, try next time\n")
         }
-    }
+    
+    
+    
+//    func tourNumbers() {
+//        var incrementation = 0
+//        for _ in 1... 10 {
+//
+//    }
+//    
+//    }
+
+
 }
-
-
 
 
 

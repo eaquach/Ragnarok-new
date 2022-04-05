@@ -124,6 +124,7 @@ class Player: NSObject {
         
     }
     
+    //func alivecharacters(except) -> [Character]
     
     
     func displayLifepointsPlayer() {
@@ -140,18 +141,18 @@ class Player: NSObject {
         
         print("\nPick an action for your character, by pressing 1 for attack and 2 for cure\n")
         
-    
+        
         guard let actionIndex = readLine(),
-            let actionChoiceRawValue = Int(actionIndex),
+              let actionChoiceRawValue = Int(actionIndex),
               let actionChoice = ActionChoice(rawValue: actionChoiceRawValue)
-              else {
+        else {
             print("Wrong choice")
-          return  pickAnAction()
+            return  pickAnAction()
             
         }
         return actionChoice
         
-      
+        
     }
     
     func isAlive() -> Bool {
@@ -167,14 +168,14 @@ class Player: NSObject {
         return false
     }
     
+    
+}
 
-    }
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 
 
