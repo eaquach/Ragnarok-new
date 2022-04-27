@@ -2,15 +2,12 @@
 import Foundation
 
 class Game {
-    var currentPlayer = Player(playerName: "currentPlayer") // teamOne
-    var opponentPlayer = Player(playerName: "opponentPlayer") // teamTwo
-    var incrementationTour : Int = 0
-//    var scoreOne :Int = 0
-//    var scoreTwo :Int = 0
-    //tour
+    var currentPlayer = Player(playerName: "currentPlayer") // create a player 1 (teamOne)
+    var opponentPlayer = Player(playerName: "opponentPlayer") // create a player 2 (teamTwo)
+
     
     
-    func start() {
+    func start() { // func for starting the game
         introductionGame()
         currentPlayer = Player.createPlayer()
         opponentPlayer = Player.createPlayer()
@@ -21,21 +18,23 @@ class Game {
     
     
     
-    func introductionGame() {
+    func introductionGame() { // func game explanations and rules
         print("""
-              Hello Warriors, welcome to the Ragnorak battle !
-              \nThere is two players in the combat ring\n
+              Hello Warriors! Welcome to the Ragnorak battle !
+              \nRagnorak battle is a combat game between two players\n
               Every player has three characters and each character has a weapon
-              \nYour first step is to choose a name for your player, then a name for each of your character and then a weapon\n
+              \nYou will have to first choose a name for your player, then for each of your character,a name and a weapon
+              The game ends when a player has no longer any character to continue the fight
+              Good luck, and let the best fighter win!\n
               """)
         
         
     }
     
-    func welcomeGameMessage() {
+    func welcomeGameMessage() { // func announcing the start of the game
         
         print("""
-              Hello Warrior \(currentPlayer.playerName), Hello Warrior \(opponentPlayer.playerName), welcome to the combat ring!
+              Hello Warrior \(currentPlayer.playerName), Hello Warrior \(opponentPlayer.playerName), Welcome to the combat ring!
               
               Congratulations, you have complete the first step, you have created your team !
               We can now start our first fight.
@@ -46,8 +45,8 @@ class Game {
     
     
     
-    func fight() { //start of the battle, using a loop while to run the fight
-        
+    func fight() { // start of the battle, all steps mentionned below are used as for a battle round, a loop "while" is used to run the fight
+        var numberRound = 0 // statistique, combat number
         while currentPlayer.isAlive() && opponentPlayer.isAlive() {
             print("\n\(currentPlayer.playerName),it's your turn, select a character to play with , by pressing the index number :")
             
@@ -55,7 +54,7 @@ class Game {
             
             let actionChoice = currentPlayer.pickAnAction()
             
-            print("\n\(opponentPlayer.playerName), now it's your turn,select a character to play with , by pressing the index number :")
+            print("\n\(opponentPlayer.playerName), now it's your turn, select a character to play with, by pressing the index number :")
             
             switch actionChoice {//explication
             case .attack :
@@ -65,6 +64,7 @@ class Game {
                 print("\(currentPlayer.playerName) choose to attack \(opponentFighter.name)")
                 fighter.attack(opponent: opponentFighter)
                 opponentFighter.displayLifepoints()
+                numberRound += 1
                 
             case .cure :
                 print("\nYou choose cure,pick a character in your team")
@@ -77,8 +77,10 @@ class Game {
             }
             
             if let winner = whoIsTheWinner(){
-                print("The Battle is Finished,\(winner.playerName) is the winner")
-//                print(game.scoreOne,game.scoreTwo)
+                print("The battle is finished, congratulations,\(winner.playerName) is the winner!")
+                print("\(currentPlayer.displayLifepoints())")
+                print("\(opponentPlayer.displayLifepoints())")
+                print("number of round :\(numberRound)")
                 break
                 
             }
@@ -89,14 +91,14 @@ class Game {
     
     
     
-    func whoIsTheWinner() -> Player? {
+    func whoIsTheWinner() -> Player? {// func to check who is the winner, if the player has no more characters, he looses the game
         
         guard currentPlayer.characters.isEmpty else {
-            print("\(currentPlayer.playerName) has no longer characters to play, the winner is \(opponentPlayer.playerName)")
+            print("\(currentPlayer.playerName) has no longer characters to play,\(currentPlayer.playerName) lost the fight")
             return opponentPlayer
         }
-       guard opponentPlayer.characters.isEmpty else {
-            print("\(opponentPlayer.playerName) has no longer characters to play, the winner is \(currentPlayer.playerName)")
+        guard opponentPlayer.characters.isEmpty else {
+            print("\(opponentPlayer.playerName) has no longer characters to play,\(opponentPlayer.playerName) lost the fight")
             
             return currentPlayer
         }
@@ -107,26 +109,19 @@ class Game {
     
     func randomMagicChest(target : Character) { //the chest will appear as a bonus, if the player is getting the number 3, he will get the bonus weapon
         let randomNumber = Int.random(in: 2...4)
-       guard randomNumber == 3 else {
-           print("\nYou didn't get the bonus, try next time\n")
-           return
-       }
-            let magicChest = Chest()
-            target.chestBonus(chest: magicChest)
-            print("\nA magic chest has appeared, \(target.name) have received an extra weapon, a magic sword with \(magicChest.damagePoints)\n")
+        guard randomNumber == 3 else {
+            print("\nYou didn't get the bonus, try next time\n")
+            return
         }
+        let magicChest = Chest()
+        target.chestBonus(chest: magicChest)
+        print("\nA magic chest has appeared, \(target.name) have received an extra weapon, a magic sword with \(magicChest.damagePoints)\n")
+    }
     
     
     
-//    func tourNumbers() {
-//        var incrementation = 0
-//        for _ in 1... 10 {
-//
-//    }
-//    
-//    }
-
-
+    
+    
 }
 
 

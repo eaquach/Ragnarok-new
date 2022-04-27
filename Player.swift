@@ -2,14 +2,14 @@
 // create your team, choice of 3 characters
 import Foundation
 
-class Player: NSObject {
+class Player: NSObject {// there is two players in this game
     enum ActionChoice: Int {
         case attack = 1
         case cure = 2
     }
     
-    var playerName : String //creating a player
-    var characters = [Character]() // creating an array of characters
+    var playerName : String //each player has a name
+    var characters = [Character]() // creating an array of the characters for each team
     let maxCharacterTeamPlayer = 3
     init(playerName:String) {
         self.playerName = playerName
@@ -18,7 +18,7 @@ class Player: NSObject {
     
     
     
-    func isNameAlreadyTaken(name:String) -> Bool {
+    func isNameAlreadyTaken(name:String) -> Bool { // func to verify if the name is already taken
         let contains = Character.names.contains(name)
         if !contains {
             Character.names.append(name)
@@ -35,7 +35,7 @@ class Player: NSObject {
     
     
     
-    static func createPlayer() -> Player {
+    static func createPlayer() -> Player { // a static function that can be use
         print("\nChoose a name for your player\n")
         while let playerName = readLine() {
             let player = Player(playerName: playerName)
@@ -71,7 +71,6 @@ class Player: NSObject {
     
     
     
-    
     func pickAWeapon() -> Weapon {
         print("\nSelect a weapon from the following list, by pressing the associated number:\n")
         
@@ -85,7 +84,7 @@ class Player: NSObject {
            choice < Weapon.weapons.count {
             let weapon =  Weapon.weapons[choice]
             
-            print("\nYour weapon is a \(weapon.name)\n")
+            print("\nYour weapon is a \(weapon.name)")
             return weapon
         } else {
             print("wrong choice")
@@ -96,8 +95,8 @@ class Player: NSObject {
     
     
     
-    func pickACharacter(character:Character? = nil) -> Character {
-        let aliveCharactersExcept = characters.filter({ return $0.characterIsAlive() && $0 != character }) // list of all characters
+    func pickACharacter(character:Character? = nil) -> Character { // list from array characters (only alive characters)
+        let aliveCharactersExcept = characters.filter({ return $0.characterIsAlive() && $0 != character }) 
         
         for (index,character) in aliveCharactersExcept.enumerated() {
             print("\nCharacter \(index):\(character.name), weapon:\(character.weapon.name), \(character.lifePoints) lifepoints\n")
@@ -108,7 +107,7 @@ class Player: NSObject {
            let characterChoice = Int(characterIndex),
            
             characterChoice >= 0,
-           characterChoice < maxCharacterTeamPlayer {
+            characterChoice < maxCharacterTeamPlayer {
             let character = aliveCharactersExcept[characterChoice]
             
             if character.characterIsAlive() {
@@ -124,7 +123,6 @@ class Player: NSObject {
         
     }
     
-    //func alivecharacters(except) -> [Character]
     
     
     func displayLifepointsPlayer() {
@@ -135,6 +133,13 @@ class Player: NSObject {
         
     }
     
+    func displayLifepoints() {
+        print("\(playerName)'s team: ")
+        for character in characters {
+            print("\(character.name) \(character.lifePoints) lifepoints")
+        }
+        
+    }
     
     
     func pickAnAction() -> ActionChoice {

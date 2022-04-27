@@ -36,7 +36,7 @@ class Character {
     
     
     func characterIsAlive() -> Bool {
-        if lifePoints > 80 {
+        if lifePoints >= 10 {
             //            print ("\(name), has \(lifePoints) lifepoints left")
             return true
         } else {
