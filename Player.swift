@@ -3,7 +3,7 @@
 import Foundation
 
 class Player: NSObject {// there is two players in this game
-    enum ActionChoice: Int {
+    enum ActionChoice: Int { // enumeration of two possible choices of action for the character
         case attack = 1
         case cure = 2
     }
@@ -35,7 +35,7 @@ class Player: NSObject {// there is two players in this game
     
     
     
-    static func createPlayer() -> Player { // a static function that can be use
+    static func createPlayer() -> Player { // a static function that allows all of the propreties of this function to be use in this class
         print("\nChoose a name for your player\n")
         while let playerName = readLine() {
             let player = Player(playerName: playerName)
@@ -47,7 +47,7 @@ class Player: NSObject {// there is two players in this game
     
     
     
-    func createCharacters() {
+    func createCharacters() { // func to create the three characters, while the 3 characters are not created, repeat the code
         while characters.count < maxCharacterTeamPlayer {
             let character = createCharacter()
             characters.append(character)
@@ -55,12 +55,12 @@ class Player: NSObject {// there is two players in this game
         
     }
     
-    // while the 3 characters are not created, repeat the code
     
     
-    func createCharacter() -> Character {
+    
+    func createCharacter() -> Character { // func to give a name for the character
         print ("\nEnter a name for your character")
-        if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){
+        if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){ // if the name is already chosen, the player has to choose a different one
             let weapon = pickAWeapon()
             return Character(weapon: weapon,name: nameValue)
         } else {
@@ -71,7 +71,7 @@ class Player: NSObject {// there is two players in this game
     
     
     
-    func pickAWeapon() -> Weapon {
+    func pickAWeapon() -> Weapon { //  func to choose a weapon from the list
         print("\nSelect a weapon from the following list, by pressing the associated number:\n")
         
         for (index, weapon) in Weapon.weapons.enumerated() {
@@ -96,7 +96,7 @@ class Player: NSObject {// there is two players in this game
     
     
     func pickACharacter(character:Character? = nil) -> Character { // list from array characters (only alive characters)
-        let aliveCharactersExcept = characters.filter({ return $0.characterIsAlive() && $0 != character }) 
+        let aliveCharactersExcept = characters.filter({ return $0.characterIsAlive() && $0 != character })
         
         for (index,character) in aliveCharactersExcept.enumerated() {
             print("\nCharacter \(index):\(character.name), weapon:\(character.weapon.name), \(character.lifePoints) lifepoints\n")
@@ -107,7 +107,7 @@ class Player: NSObject {// there is two players in this game
            let characterChoice = Int(characterIndex),
            
             characterChoice >= 0,
-            characterChoice < maxCharacterTeamPlayer {
+           characterChoice < maxCharacterTeamPlayer {
             let character = aliveCharactersExcept[characterChoice]
             
             if character.characterIsAlive() {
@@ -125,7 +125,7 @@ class Player: NSObject {// there is two players in this game
     
     
     
-    func displayLifepointsPlayer() {
+    func displayLifepointsPlayer() { // func to show the list of characters with their weapon and lifepoints
         print("Your three characters are:")
         for character in characters {
             print("\(character.name), has a \(character.weapon.name), and \(character.lifePoints) lifepoints")
@@ -133,7 +133,7 @@ class Player: NSObject {// there is two players in this game
         
     }
     
-    func displayLifepoints() {
+    func displayLifepoints() { // func to show for each player their team (name and lifepoints)
         print("\(playerName)'s team: ")
         for character in characters {
             print("\(character.name) \(character.lifePoints) lifepoints")
@@ -142,7 +142,7 @@ class Player: NSObject {// there is two players in this game
     }
     
     
-    func pickAnAction() -> ActionChoice {
+    func pickAnAction() -> ActionChoice { // func that able the player to choose an action for his character (attack or cure)
         
         print("\nPick an action for your character, by pressing 1 for attack and 2 for cure\n")
         
@@ -160,13 +160,14 @@ class Player: NSObject {// there is two players in this game
         
     }
     
-    func isAlive() -> Bool {
+    func isAlive() -> Bool { // func to check if the player is alive
         for character in characters {
             if character.characterIsAlive() {
                 return true
                 
             } else {
                 print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+                continue
             }
             
         }

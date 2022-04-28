@@ -1,7 +1,7 @@
 
 import Foundation
 
-class BowArrow: Weapon {
+class BowArrow: Weapon {  // weapon bowArrow, same properties as weapon 
     init() {
         super.init(name: "bowArrow", damagePoints:10)
     }

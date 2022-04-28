@@ -19,7 +19,7 @@ class Character {
     
     
     
-    func attack(opponent : Character) {
+    func attack(opponent : Character) { // func attack: the character attacks the character of the opponent team
         print("Attack from \(name),with \(weapon.name)")
         opponent.lifePoints -= (weapon.damagePoints)
         print("\(opponent.name) looses \(weapon.damagePoints) points")
@@ -27,7 +27,7 @@ class Character {
     }
     
     
-    func cure(target : Character){
+    func cure(target : Character) { // func cure : the character chose for the action can heal a member of his team
         let curePoints = 10
         target.lifePoints += curePoints
         print("\(target.name) recovered \(curePoints) points")
@@ -35,25 +35,24 @@ class Character {
     
     
     
-    func characterIsAlive() -> Bool {
+    func characterIsAlive() -> Bool { // func to see if the character is alive
         if lifePoints >= 10 {
-            //            print ("\(name), has \(lifePoints) lifepoints left")
             return true
+            
         } else {
-            //            print("Your \(name) is dead, choose another character to fight")
             return false
         }
         
     }
     
-    func displayLifepoints() {
+    
+    func displayLifepoints() { // func to check the lifepoints of a character
         print("\(name) has \(lifePoints) life points")
     }
     
     
     
-    
-    func chestBonus(chest: Chest) {
+    func chestBonus(chest: Chest) { // func bonus that make appear a new weapon
         weapon = chest
     }
     
@@ -67,7 +66,7 @@ class Character {
     
 }
 
-extension Character: Equatable {
+extension Character: Equatable { // using equatable to check equality between two instances and compared them
     static func == (lhs: Character, rhs: Character) -> Bool {
         lhs.name == rhs.name && lhs.weapon == rhs.weapon
     }

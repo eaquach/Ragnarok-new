@@ -1,7 +1,7 @@
 
 import Foundation
 
-class Axe :Weapon {
+class Axe :Weapon { // weapon axe, same properties as weapon 
     init() {
         super.init (name: "axe", damagePoints: 10)
     }
