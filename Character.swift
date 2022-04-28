@@ -55,24 +55,12 @@ class Character {
     func chestBonus(chest: Chest) { // func bonus that make appear a new weapon
         weapon = chest
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 extension Character: Equatable { // using equatable to check equality between two instances and compared them
     static func == (lhs: Character, rhs: Character) -> Bool {
         lhs.name == rhs.name && lhs.weapon == rhs.weapon
     }
-    
-    
-    
 }
 
 

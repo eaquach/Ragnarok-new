@@ -166,7 +166,7 @@ class Player: NSObject {// there is two players in this game
                 return true
                 
             } else {
-                print("\(character.name) doesn't have any lifepoints left, he is dead, you lost this fight")
+//                print("\(character.name) doesn't have any lifepoints left, he is dead")
                 continue
             }
             
