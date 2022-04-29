@@ -5,27 +5,23 @@ import Foundation
 
 class Character {
     
-    static var names = [String]()
-    
+   static var names = [String]()
     //    settings of all characters
-    var name:String
+  var name:String
     var lifePoints = 100
     var weapon : Weapon
-    let maxCharacterTeam = 3
+   private let maxCharacterTeam = 3
+    
     init(weapon: Weapon, name: String) {
         self.weapon = weapon
         self.name = name
     }
     
-    
-    
     func attack(opponent : Character) { // func attack: the character attacks the character of the opponent team
         print("Attack from \(name),with \(weapon.name)")
         opponent.lifePoints -= (weapon.damagePoints)
         print("\(opponent.name) looses \(weapon.damagePoints) points")
-        
     }
-    
     
     func cure(target : Character) { // func cure : the character chose for the action can heal a member of his team
         let curePoints = 10
@@ -33,24 +29,17 @@ class Character {
         print("\(target.name) recovered \(curePoints) points")
     }
     
-    
-    
     func characterIsAlive() -> Bool { // func to see if the character is alive
-        if lifePoints >= 10 {
+        if lifePoints >= 70 {
             return true
-            
         } else {
             return false
         }
-        
     }
-    
     
     func displayLifepoints() { // func to check the lifepoints of a character
         print("\(name) has \(lifePoints) life points")
     }
-    
-    
     
     func chestBonus(chest: Chest) { // func bonus that make appear a new weapon
         weapon = chest
