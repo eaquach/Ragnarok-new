@@ -47,7 +47,7 @@ class Player: NSObject {// there is two players in this game
     
     func createCharacter() -> Character { // func to give a name for the character
         print ("\nEnter a name for your character")
-       
+        
         if let nameValue = readLine(), !isNameAlreadyTaken(name: nameValue){ // if the name is already chosen, the player has to choose a different one
             let weapon = pickAWeapon()
             return Character(weapon: weapon,name: nameValue)
@@ -59,7 +59,7 @@ class Player: NSObject {// there is two players in this game
     
     func pickAWeapon() -> Weapon { //  func to choose a weapon from the list
         print("\nSelect a weapon from the following list, by pressing the associated number:\n")
-       
+        
         for (index, weapon) in Weapon.weapons.enumerated() {
             print("Item \(index): \(weapon.name), \(weapon.damagePoints) damage points")
         }
@@ -128,7 +128,7 @@ class Player: NSObject {// there is two players in this game
             if character.characterIsAlive() {
                 return true
             } else {
-//                print("\(character.name) doesn't have any lifepoints left, he is dead")
+                //                print("\(character.name) doesn't have any lifepoints left, he is dead")
                 continue
             }
         }

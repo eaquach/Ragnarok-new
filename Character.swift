@@ -5,12 +5,12 @@ import Foundation
 
 class Character {
     
-   static var names = [String]()
+    static var names = [String]()
     //    settings of all characters
-  var name:String
+    var name:String
     var lifePoints = 100
     var weapon : Weapon
-   private let maxCharacterTeam = 3
+    private let maxCharacterTeam = 3
     
     init(weapon: Weapon, name: String) {
         self.weapon = weapon

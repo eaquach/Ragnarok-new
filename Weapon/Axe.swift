@@ -6,7 +6,7 @@ class Axe :Weapon { // weapon axe, same properties as weapon
         super.init (name: "axe🪓", damagePoints: 10)
     }
     
-   override func attack() {
+    override func attack() {
         print("attack with an axe🪓")
         super.attack()
     }

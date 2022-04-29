@@ -72,37 +72,37 @@ class Game {
             print("number of round :\(numberRound)")
         }
     }
-        private func whoIsTheWinner() -> Player? {// func to check who is the winner, if the player has no more characters, he looses the game
-            guard currentPlayer.characters.isEmpty else {
-                print("\(currentPlayer.playerName) has no longer characters to play, \(currentPlayer.playerName) lost the fight")
-                return opponentPlayer
-            }
-            guard opponentPlayer.characters.isEmpty else {
-                print("\(opponentPlayer.playerName) has no longer characters to play, \(opponentPlayer.playerName) lost the fight")
-                return currentPlayer
-            }
+    private func whoIsTheWinner() -> Player? {// func to check who is the winner, if the player has no more characters, he looses the game
+        guard currentPlayer.characters.isEmpty else {
+            print("\(currentPlayer.playerName) has no longer characters to play, \(currentPlayer.playerName) lost the fight")
+            return opponentPlayer
+        }
+        guard opponentPlayer.characters.isEmpty else {
+            print("\(opponentPlayer.playerName) has no longer characters to play, \(opponentPlayer.playerName) lost the fight")
             return currentPlayer
         }
-        
-        private func randomMagicChest(target : Character) { //the chest will appear as a bonus, if the player is getting the number 3, he will get the bonus weapon that gives more damages points
-            let randomNumber = Int.random(in: 2...4)
-            guard randomNumber == 3 else {
-                print("\nYou didn't get the bonus, try next time\n")
-                return
-            }
-            
-            let magicChest = Chest()
-            target.chestBonus(chest: magicChest)
-            print("\nA magic chest has appeared 🔓✨🪄, \(target.name) have received an extra weapon, a magic sword🗡✨ with \(magicChest.damagePoints) damage points\n")
-        }
+        return currentPlayer
     }
+    
+    private func randomMagicChest(target : Character) { //the chest will appear as a bonus, if the player is getting the number 3, he will get the bonus weapon that gives more damages points
+        let randomNumber = Int.random(in: 2...4)
+        guard randomNumber == 3 else {
+            print("\nYou didn't get the bonus, try next time\n")
+            return
+        }
+        
+        let magicChest = Chest()
+        target.chestBonus(chest: magicChest)
+        print("\nA magic chest has appeared 🔓✨🪄, \(target.name) have received an extra weapon, a magic sword🗡✨ with \(magicChest.damagePoints) damage points\n")
+    }
+}
 
 
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
