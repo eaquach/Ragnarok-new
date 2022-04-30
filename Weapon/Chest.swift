@@ -1,8 +1,6 @@
 
 import Foundation
-class Chest: Weapon { // magic weapon, will replace the weapon that the character has
-    // a new weapon will double the damagepoints
-    
+class Chest: Weapon { // a magic weapon, will replace the weapon that the character has and double the damage points
     init() {
         super.init(name : "magic sword🗡✨" , damagePoints: 20 )
     }

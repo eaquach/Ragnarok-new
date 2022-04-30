@@ -20,7 +20,7 @@ class Weapon { // // Weapon class, parent class of all the weapons
     }
 }
 
-extension Weapon:Equatable { // using equatable to check equality between two instances and compared them
+extension Weapon:Equatable { // using equatable to check equality between two instances and compare them
     static func == (lhs: Weapon, rhs: Weapon) -> Bool {
         return lhs.name == rhs.name
     }

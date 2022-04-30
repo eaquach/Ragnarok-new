@@ -38,7 +38,7 @@ class Player: NSObject {// there is two players in this game
         return Player(playerName: "unknown")
     }
     
-    private func createCharacters() { // func to create the three characters, while the 3 characters are not created, repeat the code
+    private func createCharacters() { // func to create the three characters, while the three characters are not created, repeat the code
         while characters.count < maxCharacterTeamPlayer {
             let character = createCharacter()
             characters.append(character)
@@ -97,14 +97,14 @@ class Player: NSObject {// there is two players in this game
         return pickACharacter()
     }
     
-    func displayLifepointsPlayer() { // func to show the list of characters with their weapon and lifepoints
+    func displayLifepointsPlayer() { // func to show the list of characters with their weapons and lifepoints
         print("Your three characters are:")
         for character in characters {
             print("\(character.name), has a \(character.weapon.name), and \(character.lifePoints) lifepoints")
         }
     }
     
-    func displayLifepoints() { // func to show for each player their team (name and lifepoints)
+    func displayLifepoints() { // func to show for each player their team (names and lifepoints)
         print("\(playerName)'s team: ")
         for character in characters {
             print("\(character.name) \(character.lifePoints) lifepoints")

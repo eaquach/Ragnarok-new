@@ -19,7 +19,7 @@ class Game {
               \nRagnorak battle is a combat game🥊🎮 between two players🥷🏻🥷🏻\n
               Every player🥷🏻🥷🏻 has three characters and each character has a weapon
               \nYou will have to first choose a name for your player🥷🏻, then for each of your character,a name and a weapon.
-              The game ends when a player🥷🏻 has no longer any alive character to continue the fight🥊.
+              The game ends when a player🥷🏻 has no longer any living characters to continue the fight🥊.
               Good luck🍀, and let the best fighter win🏆!\n
               """)
     }
@@ -32,19 +32,18 @@ class Game {
               """)
     }
     
-    private func fight() { // start of the battle, all steps mentioned below are used as for a battle round, a loop "while" is used to run the fight
+    private func fight() { // start of the battle, all steps mentioned below are used for a battle round, a loop "while" is used to run the fight
         var numberRound = 0 // allow the tracking of round number, statistique, combat number
         while currentPlayer.isAlive() && opponentPlayer.isAlive() {
-            print("\n\(currentPlayer.playerName),it's your turn, select a character to play with , by pressing the index number :")
-            
+        print("\n\(currentPlayer.playerName),it's your turn, select a character to play with , by pressing the index number :")
+
             let fighter = currentPlayer.pickACharacter()
-            
+
             let actionChoice = currentPlayer.pickAnAction()
-            
-            print("\n\(opponentPlayer.playerName), now it's your turn, select a character to play with, by pressing the index number :")
             
             switch actionChoice {// using switch to allow the player to choose an action from two options for his character (attack or cure)
             case .attack :
+                print("\n\(opponentPlayer.playerName), now it's your turn, select a character to play with, by pressing the index number :")
                 let opponentFighter = opponentPlayer.pickACharacter()
                 print("\nA magic chest🔓✨🪄 has appeared, let's see if you get the bonus")
                 randomMagicChest(target: fighter)
@@ -72,6 +71,7 @@ class Game {
             print("number of round :\(numberRound)")
         }
     }
+    
     private func whoIsTheWinner() -> Player? {// func to check who is the winner, if the player has no more characters, he looses the game
         guard currentPlayer.characters.isEmpty else {
             print("\(currentPlayer.playerName) has no longer characters to play, \(currentPlayer.playerName) lost the fight")
