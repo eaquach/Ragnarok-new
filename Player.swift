@@ -128,7 +128,6 @@ class Player: NSObject {// there is two players in this game
             if character.characterIsAlive() {
                 return true
             } else {
-                //                print("\(character.name) doesn't have any lifepoints left, he is dead")
                 continue
             }
         }

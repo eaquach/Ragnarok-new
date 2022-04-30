@@ -35,10 +35,10 @@ class Game {
     private func fight() { // start of the battle, all steps mentioned below are used for a battle round, a loop "while" is used to run the fight
         var numberRound = 0 // allow the tracking of round number, statistique, combat number
         while currentPlayer.isAlive() && opponentPlayer.isAlive() {
-        print("\n\(currentPlayer.playerName),it's your turn, select a character to play with , by pressing the index number :")
-
+            print("\n\(currentPlayer.playerName),it's your turn, select a character to play with , by pressing the index number :")
+            
             let fighter = currentPlayer.pickACharacter()
-
+            
             let actionChoice = currentPlayer.pickAnAction()
             
             switch actionChoice {// using switch to allow the player to choose an action from two options for his character (attack or cure)
